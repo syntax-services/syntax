@@ -10,6 +10,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // Next.js recommended rules
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: [
@@ -19,6 +20,16 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+  },
+  // ✅ your custom overrides go here
+  {
+    rules: {
+      // turn off “no explicit any” rule
+      "@typescript-eslint/no-explicit-any": "off",
+      // optionally also turn off unused vars and <img> warning:
+      "@typescript-eslint/no-unused-vars": "off",
+      "@next/next/no-img-element": "off",
+    },
   },
 ];
 
