@@ -11,10 +11,10 @@ const nextConfig: NextConfig = {
     ],
   },
   eslint: {
-    // ✅ This skips linting errors during builds on Vercel
+    // ✅ this disables ESLint blocking the build on Vercel
     ignoreDuringBuilds: true,
   },
 };
 
 export default nextConfig;
- 
+
