@@ -12,7 +12,7 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Syntax Logo"
-              width={35} // slightly smaller
+              width={35}
               height={35}
               className="rounded-xl"
             />
@@ -22,19 +22,16 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Nav always visible */}
+        {/* Nav */}
         <nav className="flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-6 mt-2 md:mt-0 text-sm md:text-base font-medium">
-          <Link href="/book" className="hover:text-syntaxBlue transition-colors">
-            Request
-          </Link>
           <Link href="/portfolio" className="hover:text-syntaxBlue transition-colors">
             Portfolio
           </Link>
-          <Link href="/contact" className="hover:text-syntaxBlue transition-colors">
-            Contact
+          <Link href="/services" className="hover:text-syntaxBlue transition-colors">
+            Services
           </Link>
-          <Link href="/about" className="hover:text-syntaxBlue transition-colors">
-            About
+          <Link href="/book" className="hover:text-syntaxBlue transition-colors">
+            Request
           </Link>
         </nav>
       </div>

@@ -23,17 +23,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <footer className="bg-white/80 dark:bg-black/40 backdrop-blur-md mt-12">
           <div className="max-w-7xl mx-auto px-6 py-8 text-center text-sm text-neutral-600 dark:text-neutral-400">
             <div className="flex justify-center space-x-6 mb-4">
-              <Link href="/book" className="hover:text-syntaxBlue transition-colors">
-                Request
-              </Link>
               <Link href="/portfolio" className="hover:text-syntaxBlue transition-colors">
                 Portfolio
               </Link>
-              <Link href="/contact" className="hover:text-syntaxBlue transition-colors">
-                Contact
+              <Link href="/services" className="hover:text-syntaxBlue transition-colors">
+                Services
               </Link>
-              <Link href="/about" className="hover:text-syntaxBlue transition-colors">
-                About
+              <Link href="/book" className="hover:text-syntaxBlue transition-colors">
+                Request
               </Link>
             </div>
             <p>© {new Date().getFullYear()} Syntax. All rights reserved.</p>
