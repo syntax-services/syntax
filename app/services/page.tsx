@@ -30,20 +30,21 @@ export default function ServicesPage() {
     setLoading(true)
 
     const formData = new FormData(e.currentTarget)
+    // match the API route fields
     const payload = {
+      name: 'Custom Project Request', // you can make this a real name field if you want
       email: formData.get('email') as string,
-      project_type: formData.get('project_type') as string,
-      features: formData.get('features') as string,
-      budget: formData.get('budget') as string,
+      message: `
+Project type: ${formData.get('project_type')}
+Features: ${formData.get('features')}
+Budget: ₦${formData.get('budget')}
+`,
     }
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_FUNCTION_URL!, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
