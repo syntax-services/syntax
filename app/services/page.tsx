@@ -30,9 +30,8 @@ export default function ServicesPage() {
     setLoading(true)
 
     const formData = new FormData(e.currentTarget)
-    // match the API route fields
     const payload = {
-      name: 'Custom Project Request', // you can make this a real name field if you want
+      name: 'Custom Project Request',
       email: formData.get('email') as string,
       message: `
 Project type: ${formData.get('project_type')}
@@ -42,16 +41,16 @@ Budget: ₦${formData.get('budget')}
     }
 
     try {
-      const res = await fetch('/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
 
       if (!res.ok) {
-        const errText = await res.text()
-        console.error(errText)
-        alert('Something went wrong.')
+        const err = await res.json().catch(() => ({}))
+        console.error(err)
+        alert(err.error || 'Something went wrong.')
       } else {
         alert('Your request has been sent!')
         setShowCustomForm(false)
