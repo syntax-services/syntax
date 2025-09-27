@@ -109,15 +109,15 @@ export default function PortfolioPage() {
 
           {/* Category filter */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition 
-                  ${
-                    selectedCategory === cat
-                      ? 'bg-syntaxBlue text-white shadow'
-                      : 'bg-white dark:bg-neutral-900 text-syntaxDark dark:text-syntaxCream hover:bg-syntaxBlue/10'
+                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium 
+        transition-colors transition-shadow duration-300 
+        ${selectedCategory === cat
+                    ? 'bg-syntaxBlue text-white shadow-lg shadow-syntaxBlue/30'
+                    : 'bg-white dark:bg-neutral-900 text-syntaxDark dark:text-syntaxCream hover:bg-syntaxBlue/10 hover:text-syntaxBlue'
                   }`}
               >
                 {cat}
