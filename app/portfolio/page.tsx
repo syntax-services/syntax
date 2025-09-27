@@ -59,7 +59,6 @@ export default function PortfolioPage() {
     setShowVideo(true)
   }
 
-  // JSON-LD schema markup
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -97,27 +96,27 @@ export default function PortfolioPage() {
         />
       </Head>
 
-      <main className="bg-syntaxCream dark:bg-syntaxDark text-syntaxDark dark:text-syntaxCream min-h-screen px-6 py-20 relative">
+      <main className="bg-syntaxCream dark:bg-syntaxDark text-syntaxDark dark:text-syntaxCream min-h-screen px-4 py-14 relative text-xs sm:text-sm md:text-base">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-5xl font-bold mb-6 text-center">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center">
             Our Portfolio – Web Design & Development Projects
           </h1>
-          <p className="text-lg mb-12 text-center max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm md:text-base mb-10 text-center max-w-2xl mx-auto">
             A showcase of our recent website design, web application development,
             ecommerce and branding projects. Discover why Syntax Tech is a leading
             web designer & developer in Nigeria.
           </p>
 
           {/* Category filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-10">
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-4xl transition shadow 
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition 
                   ${
                     selectedCategory === cat
-                      ? 'bg-syntaxBlue text-white dark:text-white'
+                      ? 'bg-syntaxBlue text-white shadow'
                       : 'bg-white dark:bg-neutral-900 text-syntaxDark dark:text-syntaxCream hover:bg-syntaxBlue/10'
                   }`}
               >
@@ -128,9 +127,9 @@ export default function PortfolioPage() {
 
           {/* Projects grid */}
           {loading ? (
-            <div className="text-center">Loading projects…</div>
+            <div className="text-center text-sm">Loading projects…</div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
               {filteredProjects.map(project => (
                 <div
                   key={project.id}
@@ -139,9 +138,9 @@ export default function PortfolioPage() {
                       ? openVideo(project.video_url, project.title)
                       : (window.location.href = `/portfolio/${project.slug}`)
                   }
-                  className="cursor-pointer bg-white/80 dark:bg-black/40 backdrop-blur-md rounded-3xl shadow-2xl transform hover:-translate-y-1 hover:shadow-3xl transition block"
+                  className="cursor-pointer bg-white/80 dark:bg-black/40 backdrop-blur-md rounded-2xl shadow-xl transform hover:-translate-y-1 hover:shadow-2xl transition block"
                 >
-                  <div className="h-48 overflow-hidden rounded-t-3xl relative">
+                  <div className="h-40 overflow-hidden rounded-t-2xl relative">
                     <Image
                       src={project.image_url}
                       alt={`${project.title} – Syntax Tech web project`}
@@ -149,22 +148,22 @@ export default function PortfolioPage() {
                       className="object-cover hover:scale-105 transition-transform"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                  <div className="p-4">
+                    <h3 className="text-sm sm:text-base md:text-lg font-bold mb-1">{project.title}</h3>
                     {project.year && (
-                      <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                      <span className="text-[10px] text-neutral-500 dark:text-neutral-400">
                         {project.year}
                       </span>
                     )}
-                    <p className="text-sm text-neutral-700 dark:text-neutral-300 my-3 line-clamp-3">
+                    <p className="text-[11px] sm:text-xs text-neutral-700 dark:text-neutral-300 my-2 line-clamp-3">
                       {project.description}
                     </p>
                     {project.impact_metrics && (
-                      <p className="text-xs font-semibold text-green-700 dark:text-green-400 mb-2">
+                      <p className="text-[10px] font-semibold text-green-700 dark:text-green-400 mb-1">
                         {project.impact_metrics}
                       </p>
                     )}
-                    <span className="inline-block bg-syntaxOrange/20 text-syntaxDark dark:text-syntaxCream text-xs font-semibold px-3 py-1 rounded-4xl">
+                    <span className="inline-block bg-syntaxOrange/20 text-syntaxDark dark:text-syntaxCream text-[10px] font-semibold px-2 py-1 rounded-full">
                       {project.category}
                     </span>
                   </div>
@@ -174,14 +173,14 @@ export default function PortfolioPage() {
           )}
 
           {/* CTA */}
-          <div className="text-center mt-14">
+          <div className="text-center mt-10">
             <Link
               href="/book"
               className="
                 bg-syntaxOrange hover:bg-orange-600 active:bg-orange-700
                 text-black dark:text-white 
-                font-semibold rounded-4xl px-8 py-4 transition 
-                shadow-lg shadow-orange-300/30 inline-block
+                font-semibold rounded-full px-6 py-3 transition 
+                shadow-lg shadow-orange-300/30 inline-block text-xs sm:text-sm
               "
             >
               Let’s Build Yours
@@ -195,11 +194,11 @@ export default function PortfolioPage() {
             <div className="relative w-full max-w-3xl">
               <button
                 onClick={() => setShowVideo(false)}
-                className="absolute -top-10 right-0 text-white text-3xl font-bold hover:text-syntaxOrange"
+                className="absolute -top-10 right-0 text-white text-2xl font-bold hover:text-syntaxOrange"
               >
                 ×
               </button>
-              <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-2xl">
+              <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl">
                 <video
                   src={selectedVideo.url}
                   controls
@@ -207,7 +206,7 @@ export default function PortfolioPage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <h2 className="text-white text-center mt-4 text-xl font-semibold">
+              <h2 className="text-white text-center mt-3 text-sm sm:text-base font-semibold">
                 {selectedVideo.title}
               </h2>
             </div>

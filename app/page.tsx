@@ -123,7 +123,7 @@ export default function HomePage() {
         }
       `}</Script>
 
-      <main className="bg-syntaxCream dark:bg-syntaxDark text-syntaxDark dark:text-syntaxCream min-h-screen">
+      <main className="bg-syntaxCream dark:bg-syntaxDark text-syntaxDark dark:text-syntaxCream min-h-screen text-xs sm:text-sm md:text-base">
         {/* HERO */}
         <motion.section
           className="max-w-6xl mx-auto px-4 py-14 md:py-20 grid md:grid-cols-2 gap-8 items-center"
