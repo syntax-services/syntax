@@ -194,7 +194,7 @@ Budget: ₦${formData.get('budget')}
                 {s.custom && (
                   <button
                     onClick={() => setShowCustomForm(true)}
-                    className="mt-3 bg-syntaxBlue hover:bg-blue-600 text-white rounded-full px-6 py-3 text-xs sm:text-base shadow-lg shadow-blue-300/30 transition"
+                    className="mt-3 bg-syntaxBlue hover:bg-blue-600 text-black dark:text-white font-semibold rounded-full px-6 py-3 text-xs sm:text-base shadow-lg shadow-blue-300/30 transition"
                   >
                     Open Custom Project Form
                   </button>
