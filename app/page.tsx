@@ -67,11 +67,11 @@ export default function HomePage() {
           content="Syntax, Syntax Services, Syntax Tech, web designer Nigeria, website developer near me, web developer Nigeria, branding, SEO, website management, web apps, affordable websites"
         />
         <meta name="robots" content="index,follow" />
-        <link rel="canonical" href="https://syntax.com.ng/" />
+        <link rel="canonical" href="https://www.syntax.com.ng/" />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://syntax.com.ng/" />
+        <meta property="og:url" content="https://www.syntax.com.ng/" />
         <meta
           property="og:title"
           content="Syntax – Web Design & Development in Nigeria"
@@ -80,7 +80,7 @@ export default function HomePage() {
           property="og:description"
           content="Modern websites, apps, branding & SEO. Affordable and fast delivery. Book Syntax today."
         />
-        <meta property="og:image" content="https://syntax.com.ng/syntax-og.png" />
+        <meta property="og:image" content="https://www.syntax.com.ng/syntax-og.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -93,7 +93,8 @@ export default function HomePage() {
           name="twitter:description"
           content="Professional websites, apps & branding in Nigeria."
         />
-        <meta name="twitter:image" content="https://syntax.com.ng/logo.png" />
+        <meta name="twitter:image" content="https://www.syntax.com.ng/logo.png" />
+        <meta name="msvalidate.01" content="459377231B1E3B0F99EB4CA02389C647" />
       </Head>
 
       {/* ✅ JSON-LD Business Schema */}
