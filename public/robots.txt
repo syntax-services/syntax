@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.syntax.com.ng
+
+# Sitemaps
+Sitemap: https://www.syntax.com.ng/sitemap.xml
