@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 
-// -------------------- Types --------------------
 type ContactRow = {
   id: string
   name: string
@@ -35,13 +34,9 @@ type ProjectRow = {
   created_at: string
 }
 
-// -------------------- Config --------------------
-// Do NOT use sensitive secrets with NEXT_PUBLIC (exposes to browser)
-// ADMIN_EMAIL is okay client-side for gating
-const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || ''
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL!
+const ADMIN_TOKEN = process.env.NEXT_PUBLIC_ADMIN_API_TOKEN! // front-end token
 
-// Token should ONLY be used in your backend API routes (not client)
-// So here we just keep the function call generic, and API route will validate securely.
 export default function AdminDashboard() {
   const [contacts, setContacts] = useState<ContactRow[]>([])
   const [bookings, setBookings] = useState<BookingRow[]>([])
@@ -65,7 +60,7 @@ export default function AdminDashboard() {
 
   const router = useRouter()
 
-  // -------------------- Auth + Fetch --------------------
+  // -------- AUTH + DATA FETCH --------
   useEffect(() => {
     const init = async () => {
       const {
@@ -79,6 +74,7 @@ export default function AdminDashboard() {
       }
 
       await Promise.all([fetchContacts(), fetchBookings(), fetchProjects()])
+
       setLoading(false)
       setAuthChecked(true)
     }
@@ -94,51 +90,43 @@ export default function AdminDashboard() {
       }
     })
 
-    return () => {
-      subscription.unsubscribe()
-    }
+    return () => subscription.unsubscribe()
   }, [router])
 
-  // -------------------- Fetch Helpers --------------------
+  // -------- FETCH (read still allowed via anon) --------
   const fetchContacts = async () => {
-    const { data } = await supabase
-      .from('contact')
-      .select('*')
-      .order('created_at', { ascending: false })
+    const { data } = await supabase.from('contact').select('*').order('created_at', { ascending: false })
     if (data) setContacts(data as ContactRow[])
   }
 
   const fetchBookings = async () => {
-    const { data } = await supabase
-      .from('bookings')
-      .select('*')
-      .order('created_at', { ascending: false })
+    const { data } = await supabase.from('bookings').select('*').order('created_at', { ascending: false })
     if (data) setBookings(data as BookingRow[])
   }
 
   const fetchProjects = async () => {
-    const { data } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false })
+    const { data } = await supabase.from('projects').select('*').order('created_at', { ascending: false })
     if (data) setProjects(data as ProjectRow[])
   }
 
-  // -------------------- API Wrapper --------------------
+  // -------- API WRAPPER --------
   const callAdminApi = async (body: any) => {
     const res = await fetch('/api/admin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${ADMIN_TOKEN}`,
       },
       body: JSON.stringify(body),
     })
     return res.json()
   }
 
-  // -------------------- Project Handlers --------------------
+  // -------- PROJECTS: ADD --------
   const handleAddProject = async (e: React.FormEvent) => {
     e.preventDefault()
+    // Here you’d upload to supabase.storage if needed and get public URL first.
+    // For now we assume newImage already uploaded and you pass image_url.
     await callAdminApi({
       action: 'addProject',
       title: newTitle,
@@ -151,6 +139,7 @@ export default function AdminDashboard() {
     await fetchProjects()
   }
 
+  // -------- PROJECTS: UPDATE --------
   const handleUpdateProject = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!editingProject) return
@@ -176,13 +165,13 @@ export default function AdminDashboard() {
     setEditImage(null)
   }
 
-  // -------------------- Bookings Update --------------------
+  // -------- BOOKINGS: UPDATE --------
   const handleBookingUpdate = async (id: string, updates: Partial<BookingRow>) => {
     await callAdminApi({ action: 'updateBooking', id, updates })
     await fetchBookings()
   }
 
-  // -------------------- CSV Export --------------------
+  // -------- CSV EXPORT --------
   const exportCSV = (rows: any[], filename: string) => {
     if (!rows.length) return
     const headers = Object.keys(rows[0])
@@ -201,7 +190,7 @@ export default function AdminDashboard() {
     URL.revokeObjectURL(url)
   }
 
-  // -------------------- IndexNow --------------------
+  // -------- INDEXNOW: Notify search engines (UI button) --------
   const DEFAULT_INDEX_URLS = [
     'https://syntax.com.ng/',
     'https://syntax.com.ng/portfolio',
@@ -225,6 +214,8 @@ export default function AdminDashboard() {
       })
 
       const json = await res.json().catch(() => null)
+      console.log('IndexNow response:', res.status, json)
+
       if (!res.ok) {
         setIndexSuccess(false)
         setIndexMsg(json?.error || `IndexNow failed (status ${res.status})`)
@@ -236,6 +227,7 @@ export default function AdminDashboard() {
       }
       setLastPingAt(new Date().toISOString())
     } catch (err: any) {
+      console.error('IndexNow network error', err)
       setIndexSuccess(false)
       setIndexMsg('Network error — could not reach the IndexNow endpoint.')
       setIndexResponse(err?.message || String(err))
@@ -245,7 +237,6 @@ export default function AdminDashboard() {
     }
   }
 
-  // -------------------- Render --------------------
   if (!authChecked || loading) return <p className="p-6 text-center">Loading…</p>
 
   return (
@@ -269,8 +260,9 @@ export default function AdminDashboard() {
             <div className="mt-2 text-right">
               {indexMsg && (
                 <div
-                  className={`text-sm ${indexSuccess ? 'text-green-700' : 'text-red-600'
-                    }`}
+                  className={`text-sm ${
+                    indexSuccess ? 'text-green-700' : 'text-red-600'
+                  }`}
                 >
                   {indexMsg}
                 </div>
@@ -386,10 +378,10 @@ export default function AdminDashboard() {
                   !b.details
                     ? ''
                     : isExpanded
-                      ? b.details
-                      : b.details.length > 100
-                        ? b.details.slice(0, 100) + '…'
-                        : b.details
+                    ? b.details
+                    : b.details.length > 100
+                    ? b.details.slice(0, 100) + '…'
+                    : b.details
                 return (
                   <tr key={b.id} className="border-b dark:border-neutral-800 align-top">
                     <td className="p-3">{b.full_name}</td>
