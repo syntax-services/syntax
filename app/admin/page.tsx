@@ -50,6 +50,14 @@ export default function AdminDashboard() {
   const [editingProject, setEditingProject] = useState<ProjectRow | null>(null)
   const [editImage, setEditImage] = useState<File | null>(null)
 
+  // IndexNow states
+  const [indexLoading, setIndexLoading] = useState(false)
+  const [indexMsg, setIndexMsg] = useState<string | null>(null)
+  const [indexSuccess, setIndexSuccess] = useState<boolean | null>(null)
+  const [lastPingAt, setLastPingAt] = useState<string | null>(null)
+  const [indexResponse, setIndexResponse] = useState<any>(null)
+  const [showIndexDetails, setShowIndexDetails] = useState(false)
+
   const router = useRouter()
 
   // -------- AUTH + DATA FETCH --------
@@ -107,7 +115,7 @@ export default function AdminDashboard() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${ADMIN_TOKEN}`,
+        Authorization: Bearer ${ADMIN_TOKEN},
       },
       body: JSON.stringify(body),
     })
@@ -170,7 +178,7 @@ export default function AdminDashboard() {
     const csv = [
       headers.join(','),
       ...rows.map((r) =>
-        headers.map((h) => `"${(r[h] ?? '').toString().replace(/"/g, '""')}"`).join(',')
+        headers.map((h) => "${(r[h] ?? '').toString().replace(/"/g, '""')}").join(',')
       ),
     ].join('\n')
     const blob = new Blob([csv], { type: 'text/csv' })
@@ -182,13 +190,109 @@ export default function AdminDashboard() {
     URL.revokeObjectURL(url)
   }
 
+  // -------- INDEXNOW: Notify search engines (UI button) --------
+  const DEFAULT_INDEX_URLS = [
+    'https://syntax.com.ng/',
+    'https://syntax.com.ng/portfolio',
+    'https://syntax.com.ng/services',
+    'https://syntax.com.ng/book',
+    'https://syntax.com.ng/sitemap.xml',
+  ]
+
+  const handleIndexNow = async (urls: string[] = DEFAULT_INDEX_URLS) => {
+    setIndexLoading(true)
+    setIndexMsg(null)
+    setIndexSuccess(null)
+    setIndexResponse(null)
+    setShowIndexDetails(false)
+
+    try {
+      const res = await fetch('/api/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urlList: urls }),
+      })
+
+      const json = await res.json().catch(() => null)
+      console.log('IndexNow response:', res.status, json)
+
+      if (!res.ok) {
+        setIndexSuccess(false)
+        setIndexMsg(json?.error || IndexNow failed (status ${res.status}))
+        setIndexResponse(json)
+      } else {
+        setIndexSuccess(true)
+        setIndexMsg('IndexNow ping succeeded — search engines notified.')
+        setIndexResponse(json)
+      }
+      setLastPingAt(new Date().toISOString())
+    } catch (err: any) {
+      console.error('IndexNow network error', err)
+      setIndexSuccess(false)
+      setIndexMsg('Network error — could not reach the IndexNow endpoint.')
+      setIndexResponse(err?.message || String(err))
+      setLastPingAt(new Date().toISOString())
+    } finally {
+      setIndexLoading(false)
+    }
+  }
+
   if (!authChecked || loading) return <p className="p-6 text-center">Loading…</p>
 
   return (
     <main className="p-6 bg-syntaxCream dark:bg-syntaxDark min-h-screen text-syntaxDark dark:text-syntaxCream">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <div className="flex gap-2">
+
+        <div className="flex items-center gap-2">
+          {/* IndexNow Ping Button */}
+          <div className="flex flex-col items-end">
+            <button
+              onClick={() => handleIndexNow()}
+              disabled={indexLoading}
+              title="Notify search engines (IndexNow) about important pages"
+              className="px-3 py-2 rounded-3xl bg-syntaxBlue hover:bg-blue-700 text-white font-semibold shadow-lg transition inline-flex items-center gap-2"
+            >
+              {indexLoading ? 'Pinging…' : 'Notify Search Engines'}
+            </button>
+
+            {/* small status / timestamp */}
+            <div className="mt-2 text-right">
+              {indexMsg && (
+                <div
+                  className={`text-sm ${
+                    indexSuccess ? 'text-green-700' : 'text-red-600'
+                  }`}
+                >
+                  {indexMsg}
+                </div>
+              )}
+              {lastPingAt && (
+                <div className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+                  Last ping: {new Date(lastPingAt).toLocaleString()}
+                  {indexResponse && (
+                    <button
+                      onClick={() => setShowIndexDetails((s) => !s)}
+                      className="ml-3 text-xs underline"
+                    >
+                      {showIndexDetails ? 'Hide details' : 'Show details'}
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* details panel (collapsible) */}
+            {showIndexDetails && indexResponse && (
+              <pre className="mt-2 p-3 bg-white dark:bg-neutral-900 rounded-lg text-xs max-w-md overflow-auto shadow">
+                {typeof indexResponse === 'string'
+                  ? indexResponse
+                  : JSON.stringify(indexResponse, null, 2)}
+              </pre>
+            )}
+          </div>
+
+          {/* Export / Logout buttons */}
           <button
             onClick={() => exportCSV(contacts, 'contacts.csv')}
             className="px-3 py-2 rounded bg-green-600 text-white"
@@ -460,15 +564,3 @@ export default function AdminDashboard() {
                       onClick={() => handleDeleteProject(p.id)}
                       className="px-3 py-1 bg-red-500 text-white rounded"
                     >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  )
-}
