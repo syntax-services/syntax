@@ -1,52 +1,55 @@
-'use client'
+"use client"
 
-import { CacheProvider } from '@emotion/react'
-import { ThemeProvider, CssBaseline, createTheme } from '@mui/material'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import createCache from '@emotion/cache'
-import { ReactNode } from 'react'
+import { CacheProvider } from "@emotion/react"
+import createCache from "@emotion/cache"
+import { ThemeProvider, CssBaseline, createTheme } from "@mui/material"
+import { ChakraProvider } from "@chakra-ui/react"
+import { extendTheme } from "@chakra-ui/theme-utils"
+import { ReactNode } from "react"
 
-// Emotion cache for MUI & Chakra harmony
-const cache = createCache({ key: 'css', prepend: true })
+// ✅ Create Emotion cache (for MUI + Chakra compatibility)
+const cache = createCache({ key: "css", prepend: true })
 
-// Material UI theme setup
-const muiTheme = createTheme({
-  palette: {
-    mode: 'light',
-    primary: { main: '#0070f3' },
-    background: { default: '#fffaf6' },
-  },
-  typography: {
-    fontFamily: ['Inter', 'Poppins', 'sans-serif'].join(','),
-  },
-})
-
-// Chakra custom theme setup
+// ✅ Chakra theme customization
 const chakraTheme = extendTheme({
-  styles: {
-    global: {
-      body: {
-        bg: '#fffaf6',
-        color: '#0b0b0b',
-        _dark: {
-          bg: '#0b0b0b',
-          color: '#fffaf6',
-        },
-      },
+  colors: {
+    brand: {
+      50: "#f5faff",
+      100: "#e0f0ff",
+      200: "#b3daff",
+      300: "#80c2ff",
+      400: "#4da9ff",
+      500: "#1a91ff",
+      600: "#0074e0",
+      700: "#0058b3",
+      800: "#003c80",
+      900: "#00214d",
     },
   },
   fonts: {
-    heading: `'Poppins', sans-serif`,
-    body: `'Inter', sans-serif`,
+    heading: "'Poppins', sans-serif",
+    body: "'Inter', sans-serif",
   },
 })
 
-export function Providers({ children }: { children: ReactNode }) {
+// ✅ MUI theme (Material + Tailwind coherence)
+const muiTheme = createTheme({
+  palette: {
+    mode: "light",
+    primary: { main: "#1a91ff" },
+    background: { default: "#f9fafb" },
+  },
+  typography: {
+    fontFamily: "'Inter', sans-serif",
+  },
+})
+
+export default function Providers({ children }: { children: ReactNode }) {
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
         <ChakraProvider theme={chakraTheme}>
-          <CssBaseline />
           {children}
         </ChakraProvider>
       </ThemeProvider>
