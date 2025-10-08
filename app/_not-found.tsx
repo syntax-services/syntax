@@ -1,37 +1,40 @@
-// app/_not-found.tsx
+// app/_not-found/page.tsx
 "use client"
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 text-center px-6">
+    <main className="flex flex-col items-center justify-center min-h-screen text-center bg-white dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200">
       <motion.h1
-        className="text-8xl font-bold text-syntaxBlue mb-4"
-        initial={{ opacity: 0, y: -40 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
+        className="text-6xl font-extrabold tracking-tight mb-4"
       >
         404
       </motion.h1>
-
       <motion.p
-        className="text-lg text-neutral-600 dark:text-neutral-300 mb-8 max-w-md"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
+        transition={{ delay: 0.2 }}
+        className="text-lg mb-8 text-neutral-600 dark:text-neutral-400"
       >
-        The page you’re looking for doesn’t exist or has been moved.  
-        Let’s get you back home.
+        Oops! The page you’re looking for doesn’t exist.
       </motion.p>
-
-      <Link href="/" className="inline-block">
-        <Button className="bg-syntaxBlue hover:bg-syntaxDark text-white font-semibold px-6 py-3 rounded-xl transition-all">
-          Go Home
-        </Button>
-      </Link>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+      >
+        <Link
+          href="/"
+          className="px-6 py-3 rounded-xl bg-neutral-900 text-white dark:bg-neutral-200 dark:text-neutral-900 hover:bg-neutral-700 dark:hover:bg-white transition-colors"
+        >
+          Go back home
+        </Link>
+      </motion.div>
     </main>
   )
 }
