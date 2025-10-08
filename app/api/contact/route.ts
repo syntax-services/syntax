@@ -2,74 +2,66 @@
 import { supabaseServer } from '@/lib/supabaseServerClient'
 import { Resend } from 'resend'
 
-// Make sure you have RESEND_API_KEY set in Vercel dashboard
-const resend = new Resend(process.env.RESEND_API_KEY || '')
-
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    const { name, email, message } = body as {
-      name: string
-      email: string
-      message: string
-    }
+    const name = String(body?.name || '').trim()
+    const email = String(body?.email || '').trim()
+    const message = String(body?.message || '').trim()
 
+    // 1️⃣ Validate input
     if (!name || !email || !message) {
-      return new Response(
-        JSON.stringify({ error: 'All fields are required' }),
-        {
-          status: 400,
-          headers: { 'Content-Type': 'application/json' },
-        }
-      )
+      return Response.json({ error: 'All fields are required.' }, { status: 400 })
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return Response.json({ error: 'Invalid email address.' }, { status: 400 })
     }
 
-    // 1️⃣ Save to Supabase table `contact`
+    // 2️⃣ Save to Supabase
     const { error: dbError } = await supabaseServer
       .from('contact')
       .insert([{ name, email, message }])
 
     if (dbError) {
-      console.error('Supabase error:', dbError)
-      return new Response(JSON.stringify({ error: dbError.message }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
-      })
+      console.error('❌ Supabase error:', dbError)
+      return Response.json({ error: 'Failed to save message.' }, { status: 500 })
     }
 
-    // 2️⃣ Send email using Resend
-    try {
-      await resend.emails.send({
-        // must be a verified domain or address in your Resend dashboard
-        from: 'Syntax <no-reply@yourdomain.com>',
-        // where you want to receive the leads
-        to: ['yourgmail@gmail.com'],
-        subject: 'New Contact Message from Syntax Website',
-        html: `
-          <h1>New Contact Message</h1>
-          <p><b>Name:</b> ${name}</p>
-          <p><b>Email:</b> ${email}</p>
-          <p><b>Message:</b><br/>${message}</p>
-        `,
-      })
-    } catch (emailErr: any) {
-      console.error('Resend error:', emailErr)
-      // we still return success to the client if DB insert worked,
-      // but you can choose to fail the whole request if you prefer
-    }
+    // 3️⃣ Send email (only if API key is present)
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.warn('⚠️ RESEND_API_KEY missing — skipping email send.')
+    } else {
+      try {
+        const resend = new Resend(apiKey)
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    })
-  } catch (err: any) {
-    console.error('Handler error:', err)
-    return new Response(
-      JSON.stringify({ error: err.message || 'Unknown error' }),
-      {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
+        await resend.emails.send({
+          from: 'Syntax <no-reply@syntax.com.ng>', // must match verified sender in Resend
+          to: ['yourgmail@gmail.com'], // change to your receiving email
+          subject: `New Contact Message from ${name}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+              <h2>New Message from Syntax Website</h2>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Message:</strong></p>
+              <p style="white-space: pre-wrap;">${message}</p>
+            </div>
+          `,
+        })
+      } catch (err: any) {
+        console.error('📧 Resend email error:', err)
+        // Note: we do NOT fail the request here since DB insert succeeded
       }
+    }
+
+    // 4️⃣ Final success response
+    return Response.json({ success: true, message: 'Message sent successfully.' })
+  } catch (err: any) {
+    console.error('🔥 Handler error:', err)
+    return Response.json(
+      { error: err?.message || 'Internal server error.' },
+      { status: 500 }
     )
   }
 }
