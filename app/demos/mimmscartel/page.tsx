@@ -1,3 +1,4 @@
+// app/demos/mimmscartel/shop/page.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
@@ -9,17 +10,6 @@ import { FiPhone, FiShoppingCart } from 'react-icons/fi'
 import { SiWhatsapp, SiInstagram } from 'react-icons/si'
 import Lenis from 'lenis'
 import clsx from 'clsx'
-
-// 🌈 Material UI + Chakra Imports
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
-import { ChakraProvider, Badge } from '@chakra-ui/react'
 
 const products = [
   {
@@ -54,20 +44,25 @@ const products = [
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
 }
 const item = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
 export default function MimmsCartelDemo() {
   const [selected, setSelected] = useState<string | null>(null)
-  const isMobile = useMediaQuery('(max-width:768px)')
 
   useEffect(() => {
-    const lenis = new Lenis({ smoothWheel: true, duration: 1.1 })
-    const raf = (time: number) => {
+    const lenis = new Lenis({
+      smoothWheel: true,
+      duration: 1.1,
+    })
+    function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
     }
@@ -76,338 +71,210 @@ export default function MimmsCartelDemo() {
 
   const whatsappNumber = '2349169381916'
   const whatsappText = encodeURIComponent(
-    'Hi, I saw your shoes on this demo site and I want to order or ask a question.'
+    'Hi, I saw your shoes on this demo site and I want to order / ask a question.'
   )
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
 
   return (
-    <ChakraProvider>
-      <main className="min-h-screen bg-[#fffaf6] dark:bg-[#0b0b0b] text-[#0b0b0b] dark:text-[#fffaf6] selection:bg-black/80 selection:text-white">
-        <Container maxWidth="lg" sx={{ py: { xs: 8, md: 10 } }}>
-          {/* 🦋 Hero Section */}
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              >
-                <Typography
-                  variant={isMobile ? 'h4' : 'h3'}
-                  fontWeight="bold"
-                  gutterBottom
-                  sx={{ lineHeight: 1.2 }}
-                >
-                  MimmsCartel —{' '}
-                  <span className="text-amber-700">Handcrafted Shoes</span>
-                </Typography>
+    <main className="min-h-screen bg-[#fffaf6] dark:bg-[#0b0b0b] text-[#0b0b0b] dark:text-[#fffaf6] selection:bg-black/80 selection:text-white">
+      <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 sm:py-14">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          className="grid md:grid-cols-2 gap-10 items-center"
+        >
+          <div className="flex flex-col gap-5">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+              MimmsCartel — <span className="text-amber-700">Handcrafted Shoes</span>
+            </h1>
+            <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+              Every pair tells a story of craftsmanship and class. Hand-stitched, bold,
+              and made for confident Nigerian men.
+            </p>
 
-                <Typography
-                  variant="body1"
-                  sx={{
-                    color: 'text.secondary',
-                    mb: 3,
-                    fontSize: { xs: 14, md: 16 },
-                  }}
-                >
-                  Every pair tells a story of craftsmanship and class. Hand-stitched,
-                  bold, and made for confident Nigerian men.
-                </Typography>
-
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                  <Button
-                    href={whatsappLink}
-                    target="_blank"
-                    variant="contained"
-                    startIcon={<SiWhatsapp />}
-                    sx={{
-                      bgcolor: '#25D366',
-                      '&:hover': { bgcolor: '#1ebe5a' },
-                      borderRadius: '9999px',
-                      fontWeight: 600,
-                      px: 3,
-                    }}
-                  >
-                    Chat on WhatsApp
-                  </Button>
-
-                  <Button
-                    href="#products"
-                    variant="outlined"
-                    startIcon={<FiShoppingCart />}
-                    sx={{
-                      borderRadius: '9999px',
-                      borderColor: 'text.secondary',
-                      fontWeight: 600,
-                      px: 3,
-                    }}
-                  >
-                    View Collection
-                  </Button>
-                </Box>
-
-                <Box sx={{ display: 'flex', gap: 2, mt: 3 }}>
-                  <Link href="https://instagram.com/mimmscartel" target="_blank">
-                    <SiInstagram
-                      size={20}
-                      className="opacity-70 hover:opacity-100 transition"
-                    />
-                  </Link>
-                  <Link href={whatsappLink} target="_blank">
-                    <SiWhatsapp
-                      size={20}
-                      className="opacity-70 hover:opacity-100 transition"
-                    />
-                  </Link>
-                </Box>
-              </motion.div>
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-              >
-                <Box
-                  sx={{
-                    borderRadius: 4,
-                    overflow: 'hidden',
-                    boxShadow: '0 12px 25px rgba(0,0,0,0.1)',
-                  }}
-                >
-                  <Image
-                    src="/demos/mimmscartel/hero.jpg"
-                    alt="MimmsCartel Hero"
-                    width={900}
-                    height={700}
-                    className="object-cover w-full h-auto hover:scale-105 transition-transform duration-700"
-                    priority
-                  />
-                </Box>
-              </motion.div>
-            </Grid>
-          </Grid>
-
-          {/* 🌟 Features Section */}
-          <motion.div variants={container} initial="hidden" whileInView="show">
-            <Grid container spacing={4} sx={{ mt: 10 }}>
-              {[
-                {
-                  title: 'Premium Craftsmanship',
-                  desc: 'Each shoe is handmade from the finest leathers for lasting comfort.',
-                },
-                {
-                  title: 'Custom Fit',
-                  desc: 'Choose your size, color, and finishing — made uniquely for you.',
-                },
-                {
-                  title: 'Direct Orders',
-                  desc: 'Browse easily and order instantly through WhatsApp. Simple.',
-                },
-              ].map((feature, i) => (
-                <Grid item xs={12} sm={6} md={4} key={i}>
-                  <motion.div variants={item} whileHover={{ scale: 1.05 }}>
-                    <Box
-                      sx={{
-                        borderRadius: 5,
-                        p: 3,
-                        bgcolor: 'white',
-                        boxShadow: 3,
-                        '&:hover': { boxShadow: 6 },
-                      }}
-                      className="dark:bg-neutral-900"
-                    >
-                      <Typography fontWeight="bold" mb={1}>
-                        {feature.title}
-                      </Typography>
-                      <Typography fontSize={14} color="text.secondary">
-                        {feature.desc}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                </Grid>
-              ))}
-            </Grid>
-          </motion.div>
-
-          {/* 🛍 Product Grid */}
-          <Box id="products" sx={{ mt: 12 }}>
-            <Typography variant="h4" align="center" fontWeight="bold" mb={6}>
-              Featured <span className="text-amber-700">Collection</span>
-            </Typography>
-
-            <Grid container spacing={4}>
-              {products.map((p) => (
-                <Grid item xs={12} sm={6} md={3} key={p.id}>
-                  <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.03}>
-                    <Box
-                      className="dark:bg-neutral-900"
-                      sx={{
-                        borderRadius: 4,
-                        overflow: 'hidden',
-                        boxShadow: 3,
-                        transition: 'all 0.4s ease',
-                        '&:hover': {
-                          boxShadow: 6,
-                          transform: 'translateY(-5px)',
-                        },
-                      }}
-                    >
-                      <Box sx={{ position: 'relative', height: 220 }}>
-                        <Image
-                          src={p.img}
-                          alt={p.title}
-                          fill
-                          className="object-cover hover:scale-110 transition-transform duration-700"
-                        />
-                      </Box>
-
-                      <Box sx={{ p: 2.5 }}>
-                        <Typography fontWeight="600" fontSize={15}>
-                          {p.title}
-                        </Typography>
-                        <Typography fontSize={13} color="text.secondary" mb={1}>
-                          {p.desc}
-                        </Typography>
-
-                        <Box
-                          display="flex"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Badge
-                            colorScheme="orange"
-                            borderRadius="full"
-                            px={3}
-                            py={1}
-                          >
-                            {p.price}
-                          </Badge>
-                          <Button
-                            href={whatsappLink}
-                            target="_blank"
-                            size="small"
-                            startIcon={<SiWhatsapp />}
-                            sx={{
-                              bgcolor: '#25D366',
-                              '&:hover': { bgcolor: '#1ebe5a' },
-                              color: 'white',
-                              borderRadius: '9999px',
-                              textTransform: 'none',
-                              fontWeight: 600,
-                            }}
-                          >
-                            Order
-                          </Button>
-                        </Box>
-                      </Box>
-                    </Box>
-                  </Tilt>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
-          {/* 🗣 Testimonials */}
-          <Box sx={{ mt: 14 }}>
-            <Typography variant="h5" align="center" fontWeight="bold" mb={4}>
-              What Customers Say
-            </Typography>
-            <Grid container spacing={4}>
-              {[
-                { text: '“Excellent craftsmanship! These shoes turn heads.”', name: '— E. Obi' },
-                { text: '“Great fit, solid feel, and fast delivery via WhatsApp.”', name: '— T. Ade' },
-                { text: '“I’ve never worn something this comfortable and classy.”', name: '— J. Musa' },
-              ].map((t, i) => (
-                <Grid item xs={12} sm={6} md={4} key={i}>
-                  <Box
-                    className="dark:bg-neutral-900"
-                    sx={{
-                      p: 3,
-                      borderRadius: 4,
-                      boxShadow: 3,
-                      bgcolor: 'white',
-                      '&:hover': { boxShadow: 6 },
-                      textAlign: 'center',
-                    }}
-                  >
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      fontStyle="italic"
-                    >
-                      {t.text}
-                    </Typography>
-                    <Typography mt={2} fontWeight="bold" fontSize={13}>
-                      {t.name}
-                    </Typography>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
-
-          {/* 🚀 Footer CTA */}
-          <Box
-            className="dark:bg-neutral-900"
-            sx={{
-              mt: 12,
-              p: 5,
-              borderRadius: 5,
-              textAlign: 'center',
-              boxShadow: 4,
-              bgcolor: 'white',
-            }}
-          >
-            <Typography variant="h6" fontWeight="bold" mb={2}>
-              Want this kind of site for your brand?
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              mb={4}
-              maxWidth="600px"
-              mx="auto"
-            >
-              We can build your full website with your brand, logo, and domain so
-              customers can buy or contact you directly.
-            </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                gap: 2,
-                flexWrap: 'wrap',
-              }}
-            >
-              <Button
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <a
                 href={whatsappLink}
                 target="_blank"
-                variant="contained"
-                startIcon={<SiWhatsapp />}
-                sx={{
-                  bgcolor: '#25D366',
-                  '&:hover': { bgcolor: '#1ebe5a' },
-                  borderRadius: '9999px',
-                  fontWeight: 600,
-                  px: 3,
-                }}
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white px-5 py-3 rounded-full shadow-lg font-semibold transition-all duration-300 active:scale-95"
               >
-                Message Now
-              </Button>
-              <Button
-                href="/book"
-                variant="outlined"
-                startIcon={<FiPhone />}
-                sx={{ borderRadius: '9999px', fontWeight: 600, px: 3 }}
+                <SiWhatsapp size={18} /> Chat on WhatsApp
+              </a>
+
+              <Link
+                href="#products"
+                className="inline-flex items-center gap-2 border border-neutral-400 dark:border-neutral-700 px-5 py-3 rounded-full hover:shadow-lg transition-all duration-300"
               >
-                Request a Demo
-              </Button>
-            </Box>
-          </Box>
-        </Container>
-      </main>
-    </ChakraProvider>
+                <FiShoppingCart /> View Collection
+              </Link>
+            </div>
+
+            <div className="flex gap-4 mt-4">
+              <a href="https://instagram.com/mimmscartel" target="_blank" rel="noreferrer">
+                <SiInstagram size={20} className="opacity-70 hover:opacity-100 transition" />
+              </a>
+              <a href={whatsappLink} target="_blank" rel="noreferrer">
+                <SiWhatsapp size={20} className="opacity-70 hover:opacity-100 transition" />
+              </a>
+            </div>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+            <Image
+              src="/demos/mimmscartel/hero.jpg"
+              alt="MimmsCartel Hero"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+              priority
+            />
+          </div>
+        </motion.div>
+
+        {/* Feature Highlights */}
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-16"
+        >
+          {[
+            {
+              title: 'Premium Craftsmanship',
+              desc: 'Each shoe is handmade from the finest leathers for lasting comfort.',
+            },
+            {
+              title: 'Custom Fit',
+              desc: 'Choose your size, color, and finishing — made uniquely for you.',
+            },
+            {
+              title: 'Direct Orders',
+              desc: 'Browse easily and order instantly through WhatsApp. Simple.',
+            },
+          ].map((f, i) => (
+            <motion.div
+              key={i}
+              variants={item}
+              className="rounded-3xl p-6 bg-white/90 dark:bg-neutral-900 shadow-lg backdrop-blur-md hover:shadow-2xl transition"
+            >
+              <h4 className="font-bold mb-2 text-lg">{f.title}</h4>
+              <p className="text-sm text-neutral-600 dark:text-neutral-300">{f.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Product Grid */}
+        <section id="products" className="mt-20">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+            Featured <span className="text-amber-700">Collection</span>
+          </h2>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          >
+            {products.map((p) => (
+              <motion.div key={p.id} variants={item}>
+                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02}>
+                  <article
+                    className={clsx(
+                      'relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl bg-white dark:bg-neutral-900 transition-all duration-500'
+                    )}
+                  >
+                    <div className="relative h-56 md:h-64 w-full overflow-hidden">
+                      <Image
+                        src={p.img}
+                        alt={p.title}
+                        fill
+                        className="object-cover hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+
+                    <div className="p-4 md:p-5">
+                      <h3 className="font-semibold text-base">{p.title}</h3>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-300 mt-1 line-clamp-2">
+                        {p.desc}
+                      </p>
+
+                      <div className="mt-3 flex items-center justify-between">
+                        <span className="font-bold text-amber-700">{p.price}</span>
+
+                        <a
+                          href={whatsappLink}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white px-4 py-2 rounded-full text-xs font-semibold transition"
+                        >
+                          <SiWhatsapp size={14} /> Order
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </Tilt>
+              </motion.div>
+            ))}
+          </motion.div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="mt-20">
+          <h3 className="text-2xl font-bold mb-6 text-center">What Customers Say</h3>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {[
+              { text: '“Excellent craftsmanship! These shoes turn heads.”', name: '— E. Obi' },
+              { text: '“Great fit, solid feel, and fast delivery via WhatsApp.”', name: '— T. Ade' },
+              { text: '“I’ve never worn something this comfortable and classy.”', name: '— J. Musa' },
+            ].map((t, i) => (
+              <blockquote
+                key={i}
+                className="bg-white/90 dark:bg-neutral-900 rounded-2xl p-5 shadow hover:shadow-2xl transition"
+              >
+                <p className="text-sm text-neutral-700 dark:text-neutral-300 italic">{t.text}</p>
+                <cite className="text-xs block mt-3 font-semibold text-right">{t.name}</cite>
+              </blockquote>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Footer */}
+        <motion.section
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-16 bg-white/90 dark:bg-neutral-900 rounded-3xl shadow-lg text-center p-8 md:p-10"
+        >
+          <h4 className="font-bold text-xl md:text-2xl mb-3">
+            Want this kind of site for your brand?
+          </h4>
+          <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto mb-6">
+            We can build your full website with your images, logo, and custom domain so
+            customers can buy or contact you directly.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-[#25D366] text-white px-6 py-3 rounded-full inline-flex items-center gap-2 shadow font-semibold hover:bg-[#1ebe5a] transition-all duration-300"
+            >
+              <SiWhatsapp /> Message Now
+            </a>
+            <Link
+              href="/book"
+              className="px-6 py-3 border rounded-full inline-flex items-center gap-2 font-semibold hover:shadow-lg transition-all duration-300"
+            >
+              <FiPhone /> Request a Demo
+            </Link>
+          </div>
+        </motion.section>
+      </section>
+    </main>
   )
 }
