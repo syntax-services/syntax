@@ -56,7 +56,7 @@ Visit http://localhost:3000 to view it locally 🚀
 
 ---
 
-👨‍💻 Developer Notes
+## 👨‍💻 Developer Notes
 
 Syntax was built as a professional portfolio and service showcase platform, emphasizing performance, animation, and usability.
 The project demonstrates:
