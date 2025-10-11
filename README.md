@@ -1,88 +1,59 @@
-# ⚡ Syntax — Portfolio & Web Services Platform
+**Syntax** is a modern **frontend web platform** that showcases creative digital services and project portfolios.  
+Built by **Tijani Victor Habeeb**, a frontend developer passionate about performance, animation, and clean UI architecture.  
 
-**Live Site:** [https://syntax.com.ng](https://syntax.com.ng)
-
-Syntax is a modern web platform that showcases creative digital services and project portfolios.  
-Built with **Next.js 15**, **TypeScript**, and **Supabase**, it demonstrates a clean, scalable architecture for full-stack web development.
+Developed with **Next.js 15**, **TypeScript**, and **Supabase integration**, this project demonstrates how a frontend engineer can design and deploy a production-ready site with dynamic content and seamless backend connectivity — without relying on heavy full-stack frameworks.
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-- 🧩 **Dynamic Portfolio** — Displays project cards and service pages built with reusable React components.
-- 🪄 **Animated UI** — Uses **Framer Motion**, **Radix UI**, and **shadcn/ui** for smooth, fluid animations.
-- 🌗 **Light/Dark Theme** — Unified theme control between **Tailwind CSS** and **MUI**.
-- 🧠 **Supabase Integration** — Handles backend logic for form submissions, data storage, and admin dashboard management.
-- 🔐 **Secure Admin Dashboard** — Protected Supabase access for managing portfolio and service data.
-- ⚙️ **Fully Typed Codebase** — Built in **TypeScript** for strict type safety and maintainability.
-- 💨 **Optimized Performance** — Designed for speed, scalability, and clean UI transitions.
+- 🧩 **Dynamic Portfolio System** – Modular project cards and service pages built with reusable React components.  
+- 🪄 **Animated Interface** – Fluid transitions powered by **Framer Motion**, **Lottie**, **Radix UI**, and **shadcn/ui**.  
+- 🌗 **Light/Dark Theme** – Unified theming using **Tailwind CSS** and **MUI**.  
+- 🧠 **Supabase Integration** – Handles contact form submissions and admin dashboard data with secure APIs.  
+- 🔐 **Secure Dashboard Access** – Managed using **Supabase Row-Level Security (RLS)** for data protection.  
+- ⚙️ **TypeScript Architecture** – Fully typed for reliability, scalability, and maintainability.  
+- ⚡ **Optimized Performance** – Built for speed, accessibility, and smooth animations across devices.
 
 ---
 
 ## 🧰 Tech Stack
 
 | Layer | Tools & Frameworks |
-|-------|--------------------|
+|:------|:-------------------|
 | **Frontend** | Next.js 15, React 19, TypeScript |
-| **Styling & Animation** | Tailwind CSS, Framer Motion, MUI, shadcn/ui, Radix UI |
-| **Backend (BaaS)** | Supabase (PostgreSQL, Auth, Storage, RLS Security) |
+| **Styling & Animation** | Tailwind CSS, Framer Motion, Lottie, MUI, Radix UI, shadcn/ui |
+| **Backend Integration** | Supabase (Auth, Storage, **RLS Security**) |
 | **Deployment** | Vercel |
 
 ---
 
 ## ⚙️ Local Setup
 
-To run this project locally, follow the steps below:
+Follow the steps below to run Syntax locally:
 
+### 1️⃣ Clone the repository
 ```bash
-# 1️⃣ Clone the repository
 git clone https://github.com/syntax-services/syntax.git
 
-# 2️⃣ Navigate into the folder
+2️⃣ Navigate into the project directory
 cd syntax
 
-# 3️⃣ Install dependencies
+3️⃣ Install dependencies
 npm install
 
-# 4️⃣ Create an .env.local file and add your Supabase credentials
+4️⃣ Configure your environment variables
+Create an .env.local file in the root directory and add your Supabase credentials:
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
 
-# 5️⃣ Run the development server
+5️⃣ Run the development server
 npm run dev
 
-Visit http://localhost:3000 to view it locally 🚀
-
-
----
-
-## 👨‍💻 Developer Notes
-
-Syntax was built as a professional portfolio and service showcase platform, emphasizing performance, animation, and usability.
-The project demonstrates:
-
-Clean architecture and modular design.
-
-Integration of Supabase for database and authentication.
-
-Real-world full-stack workflow: from frontend logic to backend API integration.
-
-Iterative learning and AI-assisted development practices for rapid prototyping.
-
-
-
----
-
-🧑‍💼 Author
-
-Name: [Tijani Victor Habeeb]
-Role: Frontend Developer (React, Next.js, Supabase)
-Email: [habeebtijanivictor@gmail.com]
+Visit the local development environment at http://localhost:3000.
+👤 Author
+Name: Tijani Victor Habeeb
+Role: Frontend Developer (React, Next.js, Supabase Integration)
+Email: habeebtijanivictor@gmail.com
 GitHub: https://github.com/syntax-services
 Portfolio: https://syntax.com.ng
-
-
----
-
-> 🗣️ “Built with precision, designed for performance.”
-
