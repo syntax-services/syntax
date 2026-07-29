@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F9E8B2"/>
+      <stop offset="50%" stop-color="#C8A86B"/>
+      <stop offset="100%" stop-color="#9A7B3E"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="none" stroke="url(#goldGrad)" stroke-width="3" opacity="0.8"/>
+  <path d="M 60 120 L 70 70 L 100 95 L 130 70 L 140 120 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="70" cy="65" r="4" fill="url(#goldGrad)"/>
+  <circle cx="100" cy="90" r="4" fill="url(#goldGrad)"/>
+  <circle cx="130" cy="65" r="4" fill="url(#goldGrad)"/>
+  <text x="100" y="150" font-family="'Playfair Display', serif" font-size="22" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="4">TML</text>
+</svg>
