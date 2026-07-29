@@ -1,10 +1,18 @@
-// components/Footer.tsx
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { MessageCircle, Facebook, Instagram, Twitter } from 'lucide-react'
 import { SiTiktok } from 'react-icons/si'
 
 export default function Footer() {
+  const pathname = usePathname()
+
+  if (pathname?.startsWith('/demos')) {
+    return null
+  }
+
   return (
     <footer className="border-t border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md py-14 px-4 relative z-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">

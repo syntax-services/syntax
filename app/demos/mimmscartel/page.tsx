@@ -1,280 +1,282 @@
-// app/demos/mimmscartel/shop/page.tsx
+// app/demos/mimmscartel/page.tsx
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import Tilt from 'react-parallax-tilt'
-import { FiPhone, FiShoppingCart } from 'react-icons/fi'
-import { SiWhatsapp, SiInstagram } from 'react-icons/si'
-import Lenis from 'lenis'
-import clsx from 'clsx'
+import { motion, AnimatePresence } from 'framer-motion'
+import CartelHeader from '@/components/mimmscartel/CartelHeader'
+import CartelFooter from '@/components/mimmscartel/CartelFooter'
+import { ShoppingBag, ArrowRight, Check, X, ShieldCheck, Zap } from 'lucide-react'
+import { SiWhatsapp } from 'react-icons/si'
 
-const products = [
+export const PRODUCTS = [
   {
     id: '1',
     title: 'The Fine Driver - Brown',
-    price: '₦45,000',
-    img: '/demos/mimmscartel/1.jpg',
-    desc: 'Hand-finished leather driver — stylish & durable. Premium quality built to last.',
+    price: 45000,
+    formattedPrice: '₦45,000',
+    category: 'Drivers',
+    img: '/demos/mimmscartel/driver-brown.jpg',
+    desc: 'Hand-finished Italian leather driver shoe — sleek silhouette with soft cushioned lining for all-day luxury comfort.',
   },
   {
     id: '2',
     title: 'Classic Oxford - Black',
-    price: '₦48,000',
-    img: '/demos/mimmscartel/2.jpg',
-    desc: 'Timeless silhouette for formal and smart-casual looks. A true gentleman’s piece.',
+    price: 48000,
+    formattedPrice: '₦48,000',
+    category: 'Oxfords',
+    img: '/demos/mimmscartel/oxford-black.jpg',
+    desc: 'Timeless polished leather oxford shoe designed for formal galas, boardrooms, and smart-casual evenings.',
   },
   {
     id: '3',
-    title: 'Casual Slip-on - Tan',
-    price: '₦40,000',
-    img: '/demos/mimmscartel/3.jpg',
-    desc: 'Comfort-first everyday shoe, breathable and light for long wear.',
+    title: 'Handmade Loafer - Cognac',
+    price: 52000,
+    formattedPrice: '₦52,000',
+    category: 'Loafers',
+    img: '/demos/mimmscartel/loafer-cognac.jpg',
+    desc: 'Bespoke cognac leather penny loafer featuring hand-stitched detailing and high-durability leather outsole.',
   },
   {
     id: '4',
-    title: 'Handmade Loafer - Cognac',
-    price: '₦52,000',
-    img: '/demos/mimmscartel/4.jpg',
-    desc: 'Premium stitchwork and leather — a luxury statement handcrafted with passion.',
+    title: 'Suede Chelsea Boot - Sand',
+    price: 56000,
+    formattedPrice: '₦56,000',
+    category: 'Boots',
+    img: '/demos/mimmscartel/chelsea-tan.jpg',
+    desc: 'Premium sand suede chelsea boot crafted with flexible elastic side gussets and weather-resistant finish.',
   },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-  },
-}
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-}
+export default function MimmsCartelHomePage({ baseUrl = '/demos/mimmscartel' }: { baseUrl?: string }) {
+  const [cart, setCart] = useState<{ id: string; title: string; price: number; formattedPrice: string; img: string }[]>([])
+  const [cartOpen, setCartOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState<typeof PRODUCTS[0] | null>(null)
 
-export default function MimmsCartelDemo() {
-  const [selected, setSelected] = useState<string | null>(null)
+  const addToCart = (product: typeof PRODUCTS[0]) => {
+    setCart((prev) => [...prev, product])
+    setCartOpen(true)
+  }
 
-  useEffect(() => {
-    const lenis = new Lenis({
-      smoothWheel: true,
-      duration: 1.1,
-    })
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-    requestAnimationFrame(raf)
-  }, [])
+  const removeFromCart = (index: number) => {
+    setCart((prev) => prev.filter((_, i) => i !== index))
+  }
 
-  const whatsappNumber = '2349169381916'
-  const whatsappText = encodeURIComponent(
-    'Hi, I saw your shoes on this demo site and I want to order / ask a question.'
-  )
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappText}`
+  const totalAmount = cart.reduce((acc, item) => acc + item.price, 0)
+
+  const checkoutWhatsApp = () => {
+    if (cart.length === 0) return
+    const itemsList = cart.map((i) => `• ${i.title} (${i.formattedPrice})`).join('\n')
+    const message = `Hello Mimms Cartel! I would like to place an order from your online store:\n\n${itemsList}\n\n*Total Amount:* ₦${totalAmount.toLocaleString()}\n\nPlease confirm availability and payment details.`
+    window.open(`https://wa.me/2348051310367?text=${encodeURIComponent(message)}`, '_blank')
+  }
 
   return (
-    <main className="min-h-screen bg-[#fffaf6] dark:bg-[#0b0b0b] text-[#0b0b0b] dark:text-[#fffaf6] selection:bg-black/80 selection:text-white">
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-10 sm:py-14">
-        {/* Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="grid md:grid-cols-2 gap-10 items-center"
-        >
-          <div className="flex flex-col gap-5">
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-              MimmsCartel — <span className="text-amber-700">Handcrafted Shoes</span>
+    <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-amber-500 selection:text-neutral-950">
+      {/* Dedicated Header */}
+      <CartelHeader
+        cartCount={cart.length}
+        onOpenCart={() => setCartOpen(true)}
+        baseUrl={baseUrl}
+      />
+
+      {/* Hero Section */}
+      <section className="relative pt-36 pb-20 px-6 max-w-7xl mx-auto overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-amber-500/10 text-amber-400 border border-amber-500/20 inline-flex items-center gap-2">
+              <Zap className="w-3.5 h-3.5" />
+              HANDCRAFTED LUXURY FOOTWEAR
+            </span>
+
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05]">
+              Minimalist Shoe <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500">
+                Craftsmanship
+              </span>
             </h1>
-            <p className="text-base md:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Every pair tells a story of craftsmanship and class. Hand-stitched, bold,
-              and made for confident Nigerian men.
+
+            <p className="text-sm md:text-base text-neutral-400 leading-relaxed max-w-lg">
+              Designed for effortless style and all-day comfort. Each pair is handcrafted from premium full-grain leathers and suede.
             </p>
 
-            <div className="flex flex-wrap items-center gap-3 mt-3">
-              <a
-                href={whatsappLink}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white px-5 py-3 rounded-full shadow-lg font-semibold transition-all duration-300 active:scale-95"
-              >
-                <SiWhatsapp size={18} /> Chat on WhatsApp
-              </a>
-
+            <div className="flex flex-wrap gap-4 pt-4">
               <Link
-                href="#products"
-                className="inline-flex items-center gap-2 border border-neutral-400 dark:border-neutral-700 px-5 py-3 rounded-full hover:shadow-lg transition-all duration-300"
+                href={`${baseUrl}/shop`}
+                className="px-8 py-4 rounded-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2"
               >
-                <FiShoppingCart /> View Collection
+                <span>Explore Catalog</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
+          </motion.div>
 
-            <div className="flex gap-4 mt-4">
-              <a href="https://instagram.com/mimmscartel" target="_blank" rel="noreferrer">
-                <SiInstagram size={20} className="opacity-70 hover:opacity-100 transition" />
-              </a>
-              <a href={whatsappLink} target="_blank" rel="noreferrer">
-                <SiWhatsapp size={20} className="opacity-70 hover:opacity-100 transition" />
-              </a>
-            </div>
-          </div>
-
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+          {/* Hero Featured Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative h-[440px] rounded-[3rem] overflow-hidden border border-neutral-800 bg-neutral-900 shadow-2xl group"
+          >
             <Image
-              src="/demos/mimmscartel/hero.jpg"
-              alt="MimmsCartel Hero"
+              src="/demos/mimmscartel/driver-brown.jpg"
+              alt="The Fine Driver Brown"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
-          </div>
-        </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent p-8 flex flex-col justify-end">
+              <span className="text-xs font-mono text-amber-400 font-bold uppercase">FEATURED RELEASE</span>
+              <h3 className="text-2xl font-bold text-white mt-1">The Fine Driver — Brown</h3>
+              <p className="text-xs text-neutral-400 mt-1 font-mono">₦45,000 • In Stock</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Feature Highlights */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-16"
-        >
-          {[
-            {
-              title: 'Premium Craftsmanship',
-              desc: 'Each shoe is handmade from the finest leathers for lasting comfort.',
-            },
-            {
-              title: 'Custom Fit',
-              desc: 'Choose your size, color, and finishing — made uniquely for you.',
-            },
-            {
-              title: 'Direct Orders',
-              desc: 'Browse easily and order instantly through WhatsApp. Simple.',
-            },
-          ].map((f, i) => (
+      {/* Featured Shoe Products */}
+      <section className="py-20 px-6 max-w-7xl mx-auto border-t border-neutral-900">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div>
+            <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">SEASON COLLECTION</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold mt-1">Signature Handcrafted Shoes</h2>
+          </div>
+          <Link
+            href={`${baseUrl}/shop`}
+            className="mt-4 md:mt-0 text-xs font-mono text-neutral-400 hover:text-amber-400 transition-colors flex items-center gap-1 font-bold"
+          >
+            <span>View All Models</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {PRODUCTS.map((prod, idx) => (
             <motion.div
-              key={i}
-              variants={item}
-              className="rounded-3xl p-6 bg-white/90 dark:bg-neutral-900 shadow-lg backdrop-blur-md hover:shadow-2xl transition"
+              key={prod.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ y: -6 }}
+              className="rounded-3xl bg-neutral-900/60 border border-neutral-800/80 overflow-hidden flex flex-col justify-between group shadow-sm hover:border-amber-500/40 transition-all duration-300"
             >
-              <h4 className="font-bold mb-2 text-lg">{f.title}</h4>
-              <p className="text-sm text-neutral-600 dark:text-neutral-300">{f.desc}</p>
+              <div className="relative h-64 w-full overflow-hidden bg-neutral-950">
+                <Image
+                  src={prod.img}
+                  alt={prod.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-neutral-950/80 backdrop-blur-md text-amber-400 border border-amber-500/20">
+                  {prod.category}
+                </span>
+              </div>
+
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div>
+                  <h3 className="font-extrabold text-base text-white">{prod.title}</h3>
+                  <p className="text-xs text-neutral-400 line-clamp-2 mt-1 leading-relaxed">{prod.desc}</p>
+                </div>
+
+                <div className="pt-3 border-t border-neutral-800 flex items-center justify-between">
+                  <span className="text-lg font-mono font-extrabold text-amber-400">{prod.formattedPrice}</span>
+                  <button
+                    onClick={() => addToCart(prod)}
+                    className="px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-950 hover:bg-amber-400 transition-colors shadow-sm"
+                  >
+                    Quick Add
+                  </button>
+                </div>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Product Grid */}
-        <section id="products" className="mt-20">
-          <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
-            Featured <span className="text-amber-700">Collection</span>
-          </h2>
-
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-          >
-            {products.map((p) => (
-              <motion.div key={p.id} variants={item}>
-                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} scale={1.02}>
-                  <article
-                    className={clsx(
-                      'relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl bg-white dark:bg-neutral-900 transition-all duration-500'
-                    )}
-                  >
-                    <div className="relative h-56 md:h-64 w-full overflow-hidden">
-                      <Image
-                        src={p.img}
-                        alt={p.title}
-                        fill
-                        className="object-cover hover:scale-110 transition-transform duration-700"
-                      />
-                    </div>
-
-                    <div className="p-4 md:p-5">
-                      <h3 className="font-semibold text-base">{p.title}</h3>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-300 mt-1 line-clamp-2">
-                        {p.desc}
-                      </p>
-
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="font-bold text-amber-700">{p.price}</span>
-
-                        <a
-                          href={whatsappLink}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white px-4 py-2 rounded-full text-xs font-semibold transition"
-                        >
-                          <SiWhatsapp size={14} /> Order
-                        </a>
-                      </div>
-                    </div>
-                  </article>
-                </Tilt>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="mt-20">
-          <h3 className="text-2xl font-bold mb-6 text-center">What Customers Say</h3>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[
-              { text: '“Excellent craftsmanship! These shoes turn heads.”', name: '— E. Obi' },
-              { text: '“Great fit, solid feel, and fast delivery via WhatsApp.”', name: '— T. Ade' },
-              { text: '“I’ve never worn something this comfortable and classy.”', name: '— J. Musa' },
-            ].map((t, i) => (
-              <blockquote
-                key={i}
-                className="bg-white/90 dark:bg-neutral-900 rounded-2xl p-5 shadow hover:shadow-2xl transition"
-              >
-                <p className="text-sm text-neutral-700 dark:text-neutral-300 italic">{t.text}</p>
-                <cite className="text-xs block mt-3 font-semibold text-right">{t.name}</cite>
-              </blockquote>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA Footer */}
-        <motion.section
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 bg-white/90 dark:bg-neutral-900 rounded-3xl shadow-lg text-center p-8 md:p-10"
-        >
-          <h4 className="font-bold text-xl md:text-2xl mb-3">
-            Want this kind of site for your brand?
-          </h4>
-          <p className="text-sm md:text-base text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto mb-6">
-            We can build your full website with your images, logo, and custom domain so
-            customers can buy or contact you directly.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-[#25D366] text-white px-6 py-3 rounded-full inline-flex items-center gap-2 shadow font-semibold hover:bg-[#1ebe5a] transition-all duration-300"
-            >
-              <SiWhatsapp /> Message Now
-            </a>
-            <Link
-              href="/book"
-              className="px-6 py-3 border rounded-full inline-flex items-center gap-2 font-semibold hover:shadow-lg transition-all duration-300"
-            >
-              <FiPhone /> Request a Demo
-            </Link>
-          </div>
-        </motion.section>
+        </div>
       </section>
-    </main>
+
+      {/* Cart Drawer */}
+      <AnimatePresence>
+        {cartOpen && (
+          <div className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-xs">
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="w-full max-w-md bg-neutral-900 border-l border-neutral-800 text-white h-full p-6 flex flex-col justify-between shadow-2xl"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
+                  <h3 className="text-lg font-bold flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-amber-400" />
+                    Shopping Bag ({cart.length})
+                  </h3>
+                  <button
+                    onClick={() => setCartOpen(false)}
+                    className="p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <div className="mt-6 space-y-4 max-h-[55vh] overflow-y-auto pr-2">
+                  {cart.length === 0 ? (
+                    <div className="text-center py-12 text-neutral-500 text-xs">Your shopping bag is empty.</div>
+                  ) : (
+                    cart.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-between gap-3"
+                      >
+                        <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-neutral-900 flex-shrink-0">
+                          <Image src={item.img} alt={item.title} fill className="object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-xs font-bold">{item.title}</h4>
+                          <span className="text-xs font-mono text-amber-400 font-bold">{item.formattedPrice}</span>
+                        </div>
+                        <button
+                          onClick={() => removeFromCart(idx)}
+                          className="p-1 rounded-full text-neutral-500 hover:text-red-400"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {cart.length > 0 && (
+                <div className="pt-6 border-t border-neutral-800 space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-neutral-400 font-mono">Total Due:</span>
+                    <span className="text-xl font-mono font-extrabold text-amber-400">
+                      ₦{totalAmount.toLocaleString()}
+                    </span>
+                  </div>
+
+                  <button
+                    onClick={checkoutWhatsApp}
+                    className="w-full py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
+                  >
+                    <SiWhatsapp className="w-4 h-4" />
+                    <span>Checkout via WhatsApp</span>
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Dedicated Footer */}
+      <CartelFooter baseUrl={baseUrl} />
+    </div>
   )
 }

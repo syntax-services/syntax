@@ -576,7 +576,7 @@ export default function UpgradedAdminCommandCenter() {
                 <input
                   type="url"
                   required
-                  placeholder="https://tml-topaz.vercel.app"
+                  placeholder="https://syntax.com.ng/demos/marketline"
                   value={newDemo.demo_url}
                   onChange={(e) => setNewDemo({ ...newDemo, demo_url: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-full bg-neutral-100 dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 text-sm"
