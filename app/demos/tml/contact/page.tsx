@@ -1,4 +1,3 @@
-import '../tml-globals.css';
 'use client';
 import { MessageCircle, MapPin, Truck, Clock } from 'lucide-react';
 

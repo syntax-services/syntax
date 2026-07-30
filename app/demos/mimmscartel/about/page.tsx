@@ -1,6 +1,4 @@
-import '../../tml-globals.css';
 'use client';
-
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ShieldCheck, Droplet, Award, ArrowRight, Volume2, VolumeX, MapPin, Store, Watch, Gem, ShoppingBag } from 'lucide-react';

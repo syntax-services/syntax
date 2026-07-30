@@ -1,12 +1,10 @@
-import '../tml-globals.css';
 'use client';
-
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useCart } from '../context/CartContext';
-import { PRODUCTS } from '../data/products';
+import { useCart } from './context/CartContext';
+import { PRODUCTS } from './data/products';
 import { ArrowRight, ShieldCheck, Droplet, ShoppingBag, MessageCircle } from 'lucide-react';
 
 export default function HomePage() {
@@ -56,6 +54,7 @@ export default function HomePage() {
       clearInterval(slideTimer);
       if (autoScrollInterval) clearInterval(autoScrollInterval);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleQuickAdd = (e, product) => {

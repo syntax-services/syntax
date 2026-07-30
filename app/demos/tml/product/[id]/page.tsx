@@ -1,11 +1,9 @@
-import '../tml-globals.css';
 'use client';
-
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { useCart } from '../../../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import Link from 'next/link';
-import { PRODUCTS } from '../../../data/products';
+import { PRODUCTS } from '../../data/products';
 import { ShieldCheck, ShoppingBag, MessageCircle, ArrowLeft } from 'lucide-react';
 
 export default function ProductDetailPage() {

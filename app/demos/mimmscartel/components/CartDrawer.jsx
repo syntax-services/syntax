@@ -1,7 +1,6 @@
 'use client';
-
 import { useState } from 'react';
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../context/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, X, Plus, Minus, Trash2, MessageCircle } from 'lucide-react';
 

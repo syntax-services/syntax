@@ -1,10 +1,8 @@
-import '../../tml-globals.css';
 'use client';
-
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCart } from '../../../context/CartContext';
-import { PRODUCTS } from '../../../data/products';
+import { useCart } from '../context/CartContext';
+import { PRODUCTS } from '../data/products';
 import { Search, ShoppingBag, SlidersHorizontal, X, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 

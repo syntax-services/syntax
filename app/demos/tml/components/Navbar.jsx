@@ -1,10 +1,9 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../context/CartContext';
 import { ShoppingBag, Sun, Moon, Home, LayoutGrid, Info, MessageCircle } from 'lucide-react';
 
 export default function Navbar() {
