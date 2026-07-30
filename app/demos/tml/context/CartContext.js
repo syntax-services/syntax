@@ -1,7 +1,19 @@
 'use client';
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const CartContext = createContext();
+const defaultContext = {
+  cart: [],
+  addToCart: () => {},
+  updateQty: () => {},
+  removeFromCart: () => {},
+  isCartOpen: false,
+  setIsCartOpen: () => {},
+  totalCartCount: 0,
+  toast: null,
+  setToast: () => {}
+};
+
+const CartContext = createContext(defaultContext);
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
@@ -9,15 +21,19 @@ export function CartProvider({ children }) {
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('tml_cart_items');
-    if (savedCart) {
-      try { setCart(JSON.parse(savedCart)); } catch (e) {}
-    }
+    try {
+      const savedCart = localStorage.getItem('tml_cart_items');
+      if (savedCart) {
+        setCart(JSON.parse(savedCart));
+      }
+    } catch (e) {}
   }, []);
 
   const saveCart = (newCart) => {
     setCart(newCart);
-    localStorage.setItem('tml_cart_items', JSON.stringify(newCart));
+    try {
+      localStorage.setItem('tml_cart_items', JSON.stringify(newCart));
+    } catch (e) {}
   };
 
   const addToCart = (product) => {
@@ -32,8 +48,7 @@ export function CartProvider({ children }) {
       saveCart(updated);
     }
 
-    // Trigger Bottom-Right Toast notification
-    setToast(`${product.name} added to cart!`);
+    setToast(`${product.name || product.title || 'Item'} added to cart!`);
     setTimeout(() => {
       setToast(null);
     }, 3000);
@@ -51,7 +66,7 @@ export function CartProvider({ children }) {
     saveCart(cart.filter(item => item.id !== id));
   };
 
-  const totalCartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalCartCount = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
 
   return (
     <CartContext.Provider value={{
@@ -67,7 +82,6 @@ export function CartProvider({ children }) {
     }}>
       {children}
 
-      {/* Bottom-Right Toast Notification */}
       {toast && (
         <div className="cart-toast-notification">
           <div className="toast-content">
@@ -81,5 +95,6 @@ export function CartProvider({ children }) {
 }
 
 export function useCart() {
-  return useContext(CartContext);
+  const ctx = useContext(CartContext);
+  return ctx || defaultContext;
 }
