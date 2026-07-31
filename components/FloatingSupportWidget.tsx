@@ -2,15 +2,17 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { MessageCircle, X, Zap, ChevronRight, CheckCircle2, PhoneCall } from 'lucide-react'
 
 export default function FloatingSupportWidget() {
+  const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [dismissed, setDismissed] = useState(false)
 
-  if (dismissed) return null
+  if (dismissed || pathname?.startsWith('/demos')) return null
 
   const whatsappLink = `https://wa.me/2348051310367?text=${encodeURIComponent(
     'Hello Syntax Services! I would like to consult on a web development project.'
