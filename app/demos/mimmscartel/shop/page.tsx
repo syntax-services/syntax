@@ -1,296 +1,186 @@
-'use client';
-import { Suspense, useState, useEffect, useRef } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useCart } from '../context/CartContext';
-import { PRODUCTS } from '../data/products';
-import { Search, ShoppingBag, SlidersHorizontal, X, Check, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+// app/demos/mimmscartel/shop/page.tsx
+'use client'
 
-function ShopContent() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const catalogTopRef = useRef(null);
-  const initialCat = searchParams?.get('cat') || 'all';
+import { Suspense, useState, useEffect } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
+import CartelHeader from '@/components/mimmscartel/CartelHeader'
+import CartelFooter from '@/components/mimmscartel/CartelFooter'
+import { PRODUCTS } from '../data/products'
+import { ShoppingBag, Search, X, Check } from 'lucide-react'
+import { SiWhatsapp } from 'react-icons/si'
 
-  const { addToCart } = useCart();
-  const [selectedCat, setSelectedCat] = useState(initialCat);
-  const [search, setSearch] = useState('');
-  const [shuffledProducts, setShuffledProducts] = useState([]);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+function ShoeCatalog() {
+  const [cart, setCart] = useState<typeof PRODUCTS>([])
+  const [cartOpen, setCartOpen] = useState(false)
+  const [search, setSearch] = useState('')
+  const [activeCategory, setActiveCategory] = useState('all')
 
-  const ITEMS_PER_PAGE = 30;
+  const addToCart = (product: typeof PRODUCTS[0]) => {
+    setCart((prev) => [...prev, product])
+    setCartOpen(true)
+  }
 
-  useEffect(() => {
-    const shuffled = [...PRODUCTS].sort(() => 0.5 - Math.random());
-    setShuffledProducts(shuffled);
-  }, []);
+  const removeFromCart = (index: number) => {
+    setCart((prev) => prev.filter((_, i) => i !== index))
+  }
 
-  useEffect(() => {
-    const cat = searchParams?.get('cat');
-    if (cat) {
-      setSelectedCat(cat);
-    }
-  }, [searchParams]);
+  const filtered = PRODUCTS.filter((item) => {
+    const matchesCat = activeCategory === 'all' || item.category === activeCategory
+    const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase())
+    return matchesCat && matchesSearch
+  })
 
-  // Reset pagination to page 1 whenever search or category changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, selectedCat]);
+  const totalAmount = cart.reduce((acc, item) => acc + item.priceNGN, 0)
 
-  const categoriesList = [
-    { key: 'all', label: 'All Items' },
-    { key: 'gold', label: 'Gold Replicas' },
-    { key: 'silver', label: 'Sterling Silver' },
-    { key: 'necklaces', label: 'Necklaces & Pendants' },
-    { key: 'rings', label: 'Knuckle & Ring Stacks' },
-    { key: 'bracelets', label: 'Bracelets & Bangles' },
-    { key: 'earrings', label: 'Earrings & Huggies' },
-    { key: 'sets', label: 'Multi-Piece Jewelry Sets' },
-  ].filter(cat => {
-    if (cat.key === 'all') return true;
-    return PRODUCTS.some(p => p.category === cat.key || p.type === cat.key);
-  });
-
-  const getCategoryCount = (catKey) => {
-    if (catKey === 'all') return PRODUCTS.length;
-    return PRODUCTS.filter(p => p.category === catKey || p.type === catKey).length;
-  };
-
-  const filtered = shuffledProducts.filter(p => {
-    const matchesCat = selectedCat === 'all' || p.category === selectedCat || p.type === selectedCat;
-    const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase()) || 
-                          p.description.toLowerCase().includes(search.toLowerCase());
-    return matchesCat && matchesSearch;
-  });
-
-  // Calculate pagination boundaries
-  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, filtered.length);
-  const paginatedProducts = filtered.slice(startIndex, endIndex);
-
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      if (catalogTopRef.current) {
-        catalogTopRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
-  const handleQuickAdd = (e, product) => {
-    e.stopPropagation();
-    addToCart(product);
-  };
+  const checkoutWhatsApp = () => {
+    if (cart.length === 0) return
+    const itemsList = cart.map((i) => `• ${i.name} (₦${i.priceNGN.toLocaleString()})`).join('\n')
+    const message = `Hello Mimms Cartel! I would like to order:\n\n${itemsList}\n\n*Total:* ₦${totalAmount.toLocaleString()}`
+    window.open(`https://wa.me/2348051310367?text=${encodeURIComponent(message)}`, '_blank')
+  }
 
   return (
-    <div ref={catalogTopRef} style={{ maxWidth: '1000px', margin: '0 auto', padding: '30px 20px 70px' }}>
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <span style={{ fontSize: '0.72rem', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>TML STOREFRONT</span>
-        <h1 className="font-serif" style={{ fontSize: '2.4rem', marginTop: '4px' }}>Shop Jewelry Catalog</h1>
-      </div>
+    <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-amber-500 selection:text-neutral-950">
+      <CartelHeader
+        cartCount={cart.length}
+        onOpenCart={() => setCartOpen(true)}
+        baseUrl="/demos/mimmscartel"
+      />
 
-      {/* Filter Icon & Search Bar Row */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', marginBottom: '32px' }}>
-        <div style={{ position: 'relative', flex: 1, maxWidth: '360px' }}>
-          <Search size={15} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
-          <input 
-            type="text" 
-            placeholder="Search jewelry catalog..." 
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{ 
-              width: '100%', 
-              padding: '10px 14px 10px 38px', 
-              background: 'var(--bg-secondary)', 
-              border: '1px solid var(--border-silver)', 
-              borderRadius: 'var(--radius-pill)', 
-              color: 'var(--text-primary)', 
-              outline: 'none', 
-              fontSize: '0.85rem' 
-            }}
-          />
+      <div className="pt-32 pb-24 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div>
+            <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-widest">
+              HANDMADE FOOTWEAR
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mt-1">Shop Catalog</h1>
+          </div>
+
+          <div className="relative w-full md:w-80">
+            <Search className="w-4 h-4 text-neutral-500 absolute left-4 top-3.5" />
+            <input
+              type="text"
+              placeholder="Search shoe styles..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full bg-neutral-900 border border-neutral-800 rounded-full pl-11 pr-4 py-2.5 text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-amber-500 transition-colors"
+            />
+          </div>
         </div>
 
-        {/* Filter Pop-up Icon Button */}
-        <button 
-          className="icon-btn"
-          onClick={() => setIsFilterOpen(true)}
-          style={{ width: '42px', height: '42px', borderRadius: '50%', flexShrink: 0 }}
-          title="Filter Categories"
-        >
-          <SlidersHorizontal size={18} />
-          {selectedCat !== 'all' && (
-            <span style={{ position: 'absolute', top: '2px', right: '2px', width: '8px', height: '8px', background: 'var(--gold-accent)', borderRadius: '50%' }} />
-          )}
-        </button>
+        {/* Category Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar">
+          {['all', 'drivers', 'oxfords', 'loafers', 'boots'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full text-xs font-mono font-bold uppercase tracking-wider transition-all whitespace-nowrap ${
+                activeCategory === cat
+                  ? 'bg-amber-500 text-neutral-950 shadow-lg shadow-amber-500/20'
+                  : 'bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {filtered.map((prod) => (
+            <div
+              key={prod.id}
+              className="rounded-3xl bg-neutral-900/60 border border-neutral-800/80 overflow-hidden flex flex-col justify-between group hover:border-amber-500/40 transition-all"
+            >
+              <div className="relative h-64 w-full bg-neutral-950 overflow-hidden">
+                <Image src={prod.image} alt={prod.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div>
+                  <h3 className="font-bold text-sm text-white">{prod.name}</h3>
+                  <p className="text-xs text-neutral-400 mt-1 line-clamp-2 leading-relaxed">{prod.description}</p>
+                </div>
+                <div className="pt-3 border-t border-neutral-800 flex items-center justify-between">
+                  <span className="text-base font-mono font-extrabold text-amber-400">₦{prod.priceNGN.toLocaleString()}</span>
+                  <button
+                    onClick={() => addToCart(prod)}
+                    className="px-4 py-2 rounded-full text-xs font-bold bg-white text-neutral-950 hover:bg-amber-400 transition-colors"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Pop-Up Category Modal */}
+      {/* Cart Drawer */}
       <AnimatePresence>
-        {isFilterOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="category-modal-overlay"
-            onClick={() => setIsFilterOpen(false)}
-          >
+        {cartOpen && (
+          <div className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-xs">
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 15 }}
-              className="category-modal-content"
-              onClick={(e) => e.stopPropagation()}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              className="w-full max-w-md bg-neutral-900 border-l border-neutral-800 text-white h-full p-6 flex flex-col justify-between shadow-2xl"
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
-                <h3 className="font-serif" style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)' }}>
-                  <SlidersHorizontal size={16} /> Select Category
-                </h3>
-                <button className="icon-btn" onClick={() => setIsFilterOpen(false)}><X size={15} /></button>
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
+                  <h3 className="text-lg font-bold flex items-center gap-2">
+                    <ShoppingBag className="w-5 h-5 text-amber-400" />
+                    Shopping Bag ({cart.length})
+                  </h3>
+                  <button onClick={() => setCartOpen(false)} className="p-2 rounded-full bg-neutral-800 text-neutral-400 hover:text-white">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="mt-6 space-y-4 max-h-[55vh] overflow-y-auto">
+                  {cart.map((item, idx) => (
+                    <div key={idx} className="p-3 rounded-2xl bg-neutral-950 border border-neutral-800 flex items-center justify-between gap-3">
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden bg-neutral-900">
+                        <Image src={item.image} alt={item.name} fill className="object-cover" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xs font-bold">{item.name}</h4>
+                        <span className="text-xs font-mono text-amber-400 font-bold">₦{item.priceNGN.toLocaleString()}</span>
+                      </div>
+                      <button onClick={() => removeFromCart(idx)} className="p-1 text-neutral-500 hover:text-red-400">
+                        <X className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {categoriesList.map(cat => {
-                  const count = getCategoryCount(cat.key);
-                  const isSelected = selectedCat === cat.key;
-                  return (
-                    <button
-                      key={cat.key}
-                      onClick={() => {
-                        setSelectedCat(cat.key);
-                        setIsFilterOpen(false);
-                      }}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: '12px 16px',
-                        borderRadius: 'var(--radius-md)',
-                        background: isSelected ? 'var(--bg-primary)' : 'var(--bg-secondary)',
-                        border: isSelected ? '1px solid var(--border-silver)' : '1px solid var(--border-subtle)',
-                        color: 'var(--text-primary)',
-                        cursor: 'pointer',
-                        fontSize: '0.88rem',
-                        fontWeight: isSelected ? 700 : 500,
-                        transition: 'var(--transition)'
-                      }}
-                    >
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        {isSelected && <Check size={15} style={{ color: 'var(--gold-accent)' }} />}
-                        {cat.label}
-                      </span>
-                      <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', background: 'var(--border-subtle)', padding: '2px 8px', borderRadius: 'var(--radius-pill)' }}>
-                        {count} items
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              {cart.length > 0 && (
+                <div className="pt-6 border-t border-neutral-800 space-y-4">
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-neutral-400 font-mono">Total Due:</span>
+                    <span className="text-xl font-mono font-extrabold text-amber-400">₦{totalAmount.toLocaleString()}</span>
+                  </div>
+                  <button onClick={checkoutWhatsApp} className="w-full py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
+                    <SiWhatsapp className="w-4 h-4" />
+                    <span>Checkout via WhatsApp</span>
+                  </button>
+                </div>
+              )}
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
-      {/* Product Grid */}
-      {filtered.length === 0 ? (
-        <div style={{ textAlign: 'center', padding: '60px 20px', color: 'var(--text-muted)' }}>
-          <p>No jewelry found matching your search.</p>
-        </div>
-      ) : (
-        <>
-          <div className="product-grid-responsive">
-            {paginatedProducts.map(product => (
-              <div 
-                key={product.id} 
-                className="product-card-silver"
-                onClick={() => router.push(`/product/${product.id}`)}
-              >
-                <div className="product-img-wrap">
-                  <div className="watermark-overlay">
-                    <img src="/logo/logo.png" alt="TML Watermark" loading="lazy" />
-                  </div>
-                  <img src={product.image} alt={product.name} className="main-product-img" loading="lazy" />
-                  <span className="card-badge">{product.badge}</span>
-
-                  <button 
-                    className="card-quick-cart-btn"
-                    onClick={(e) => handleQuickAdd(e, product)}
-                    title="Add to Cart"
-                  >
-                    <ShoppingBag size={15} />
-                  </button>
-                </div>
-
-                <div className="card-details">
-                  <span className="card-category">{product.category}</span>
-                  <h3 className="card-title">{product.name}</h3>
-                  <div className="card-price">₦{product.priceNGN.toLocaleString()}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile-First Pagination Bar (30 items per page) */}
-          {totalPages > 1 && (
-            <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' }}>
-              <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                Showing {startIndex + 1}–{endIndex} of {filtered.length} items (Page {currentPage} of {totalPages})
-              </span>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <button 
-                  className="icon-btn" 
-                  disabled={currentPage === 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  style={{ opacity: currentPage === 1 ? 0.4 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
-                >
-                  <ChevronLeft size={16} />
-                </button>
-
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '50%',
-                      background: currentPage === page ? 'var(--text-primary)' : 'var(--bg-secondary)',
-                      color: currentPage === page ? 'var(--bg-primary)' : 'var(--text-primary)',
-                      border: '1px solid var(--border-silver)',
-                      fontWeight: 700,
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      transition: 'var(--transition)'
-                    }}
-                  >
-                    {page}
-                  </button>
-                ))}
-
-                <button 
-                  className="icon-btn"
-                  disabled={currentPage === totalPages}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  style={{ opacity: currentPage === totalPages ? 0.4 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
-                >
-                  <ChevronRight size={16} />
-                </button>
-              </div>
-            </div>
-          )}
-        </>
-      )}
+      <CartelFooter baseUrl="/demos/mimmscartel" />
     </div>
-  );
+  )
 }
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<div style={{ textAlign: 'center', padding: '60px' }}>Loading catalog...</div>}>
-      <ShopContent />
+    <Suspense fallback={<div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">Loading...</div>}>
+      <ShoeCatalog />
     </Suspense>
-  );
+  )
 }

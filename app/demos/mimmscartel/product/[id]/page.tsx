@@ -1,164 +1,112 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import { useCart } from '../../context/CartContext';
-import Link from 'next/link';
-import { PRODUCTS } from '../../data/products';
-import { ShieldCheck, ShoppingBag, MessageCircle, ArrowLeft } from 'lucide-react';
+// app/demos/mimmscartel/product/[id]/page.tsx
+'use client'
+
+import { useState } from 'react'
+import { useParams } from 'next/navigation'
+import Image from 'next/image'
+import Link from 'next/link'
+import CartelHeader from '@/components/mimmscartel/CartelHeader'
+import CartelFooter from '@/components/mimmscartel/CartelFooter'
+import { PRODUCTS } from '../../data/products'
+import { ShieldCheck, ShoppingBag, ArrowLeft, Check, Zap } from 'lucide-react'
+import { SiWhatsapp } from 'react-icons/si'
 
 export default function ProductDetailPage() {
-  const params = useParams();
-  const productId = params?.id;
-  const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+  const params = useParams()
+  const productId = params?.id
+  const product = PRODUCTS.find((p) => p.id === productId) || PRODUCTS[0]
 
-  const { addToCart } = useCart();
-  const [activeImg, setActiveImg] = useState('');
-  const [selectedSize, setSelectedSize] = useState('7');
-  const [addedNotice, setAddedNotice] = useState(false);
-
-  useEffect(() => {
-    if (product) {
-      setActiveImg(product.image);
-    }
-  }, [product]);
-
-  const related = PRODUCTS.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
+  const [cart, setCart] = useState<typeof PRODUCTS>([])
+  const [selectedSize, setSelectedSize] = useState('42')
+  const [addedNotice, setAddedNotice] = useState(false)
 
   const handleAddToCart = () => {
-    addToCart(product);
-    setAddedNotice(true);
-    setTimeout(() => setAddedNotice(false), 2000);
-  };
+    setCart((prev) => [...prev, product])
+    setAddedNotice(true)
+    setTimeout(() => setAddedNotice(false), 2000)
+  }
 
-  const openWhatsAppDirect = () => {
-    const msg = `👑 *PRODUCT INQUIRY* - TML Jewelry\n\nHi TML Jewelry! I am interested in ordering the *${product.name}* (₦${product.priceNGN.toLocaleString()}).\n\nIs this item available for delivery?`;
-    window.open(`https://wa.me/2348162255533?text=${encodeURIComponent(msg)}`, '_blank');
-  };
-
-  if (!product) return null;
+  const openWhatsApp = () => {
+    const msg = `Hello Mimms Cartel! I would like to order *${product.name}* (Size: EU ${selectedSize}) for ₦${product.priceNGN.toLocaleString()}. Please confirm availability.`
+    window.open(`https://wa.me/2348051310367?text=${encodeURIComponent(msg)}`, '_blank')
+  }
 
   return (
-    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '30px 24px 80px' }}>
-      <Link href="/demos/mimmscartel/shop" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.85rem', marginBottom: '28px' }}>
-        <ArrowLeft size={16} /> Back to Shop Catalog
-      </Link>
+    <div className="min-h-screen bg-neutral-950 text-white font-sans selection:bg-amber-500 selection:text-neutral-950">
+      <CartelHeader cartCount={cart.length} onOpenCart={() => {}} baseUrl="/demos/mimmscartel" />
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '50px', alignItems: 'flex-start', marginBottom: '80px' }}>
-        {/* Left Column: Image Gallery */}
-        <div>
-          <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--border-silver)', background: '#000', marginBottom: '16px', position: 'relative' }}>
-            <div className="watermark-overlay" style={{ opacity: 0.12 }}>
-              <img src="/logo/logo.png" alt="TML Watermark" loading="lazy" />
+      <div className="pt-36 pb-24 px-6 max-w-6xl mx-auto">
+        <Link
+          href="/demos/mimmscartel/shop"
+          className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-amber-400 mb-8 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>Back to Catalog</span>
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="relative h-[480px] w-full rounded-3xl overflow-hidden bg-neutral-900 border border-neutral-800 shadow-2xl">
+            <Image src={product.image} alt={product.name} fill className="object-cover" />
+          </div>
+
+          <div className="space-y-6">
+            <div>
+              <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 uppercase">
+                {product.category}
+              </span>
+              <h1 className="text-3xl md:text-4xl font-extrabold mt-3">{product.name}</h1>
+              <p className="text-2xl font-mono font-bold text-amber-400 mt-2">₦{product.priceNGN.toLocaleString()}</p>
             </div>
-            <img src={activeImg || product.image} alt={product.name} style={{ width: '100%', height: '420px', objectFit: 'cover', display: 'block', position: 'relative', zIndex: 2 }} />
-          </div>
 
-          <div style={{ display: 'flex', gap: '12px' }}>
-            {product.gallery.map((img, idx) => (
-              <img 
-                key={idx} 
-                src={img} 
-                alt="Thumbnail" 
-                loading="lazy"
-                onClick={() => setActiveImg(img)}
-                style={{ width: '70px', height: '70px', borderRadius: '8px', objectFit: 'cover', border: activeImg === img ? '2px solid var(--silver-primary)' : '1px solid var(--border-subtle)', cursor: 'pointer' }} 
-              />
-            ))}
-          </div>
-        </div>
+            <p className="text-sm text-neutral-400 leading-relaxed">{product.description}</p>
 
-        {/* Right Column: Details & Specs */}
-        <div>
-          <span style={{ fontSize: '0.75rem', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600 }}>{product.category}</span>
-          <h1 className="font-serif" style={{ fontSize: '2.4rem', margin: '8px 0 12px' }}>{product.name}</h1>
-          <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '20px' }}>
-            ₦{product.priceNGN.toLocaleString()}
-          </div>
+            <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 space-y-2">
+              <span className="text-xs font-mono text-neutral-400 font-bold uppercase">Craftsmanship Specs</span>
+              <p className="text-xs text-neutral-300 font-mono leading-relaxed">{product.specs}</p>
+            </div>
 
-          <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '24px' }}>
-            {product.description}
-          </p>
-
-          {/* Size Selector for Rings */}
-          {product.category === 'rings' && (
-            <div style={{ marginBottom: '24px' }}>
-              <label style={{ fontSize: '0.82rem', fontWeight: 600, display: 'block', marginBottom: '8px', color: 'var(--text-muted)' }}>Select Ring Size:</label>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                {['6', '7', '8'].map(sz => (
-                  <button 
+            {/* Size Selector */}
+            <div className="space-y-2">
+              <label className="text-xs font-mono text-neutral-400 font-bold uppercase">Select Size (EU)</label>
+              <div className="flex gap-2">
+                {['40', '41', '42', '43', '44', '45'].map((sz) => (
+                  <button
                     key={sz}
                     onClick={() => setSelectedSize(sz)}
-                    className={`btn-action-morph ${selectedSize === sz ? 'active' : ''}`}
-                    style={{ padding: '6px 14px', fontSize: '0.82rem' }}
+                    className={`w-11 h-11 rounded-xl text-xs font-mono font-bold transition-all ${
+                      selectedSize === sz
+                        ? 'bg-amber-500 text-neutral-950 font-extrabold shadow-lg shadow-amber-500/20'
+                        : 'bg-neutral-900 text-neutral-400 border border-neutral-800 hover:text-white'
+                    }`}
                   >
-                    Size {sz}
+                    {sz}
                   </button>
                 ))}
               </div>
             </div>
-          )}
 
-          {/* Specifications Box */}
-          <div style={{ background: 'var(--bg-secondary)', padding: '18px', borderRadius: '12px', border: '1px solid var(--border-silver)', marginBottom: '28px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: 700, marginBottom: '8px' }}>
-              <ShieldCheck size={18} style={{ color: 'var(--silver-primary)' }} /> Non-Tarnish Quality Guarantee
+            <div className="pt-4 flex flex-wrap gap-4">
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 py-4 rounded-full bg-white hover:bg-neutral-200 text-neutral-950 font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>{addedNotice ? 'Added to Bag!' : 'Add to Bag'}</span>
+              </button>
+
+              <button
+                onClick={openWhatsApp}
+                className="flex-1 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-all"
+              >
+                <SiWhatsapp className="w-4 h-4" />
+                <span>Order via WhatsApp</span>
+              </button>
             </div>
-            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              {product.specs}
-            </p>
-          </div>
-
-          {/* Action CTAs */}
-          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-            <button className="btn-action-morph" style={{ flex: 1, justifyContent: 'center' }} onClick={handleAddToCart}>
-              <ShoppingBag size={18} /> <span>{addedNotice ? 'Added to Cart!' : 'Add to Cart'}</span>
-            </button>
-            <button className="btn-whatsapp-action" style={{ flex: 1, justifyContent: 'center' }} onClick={openWhatsAppDirect}>
-              <MessageCircle size={18} /> Instant Order via WhatsApp
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Related Products */}
-      {related.length > 0 && (
-        <section>
-          <h2 className="font-serif" style={{ fontSize: '1.8rem', marginBottom: '24px' }}>You May Also Like</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '24px' }}>
-            {related.map(rel => (
-              <div 
-                key={rel.id} 
-                className="product-card-silver"
-                onClick={() => router.push(`/product/${rel.id}`)}
-              >
-                <div className="product-img-wrap">
-                  <div className="watermark-overlay">
-                    <img src="/logo/logo.png" alt="TML Watermark" loading="lazy" />
-                  </div>
-                  <img src={rel.image} alt={rel.name} className="main-product-img" loading="lazy" />
-                  <span className="card-badge">{rel.badge}</span>
-
-                  <button 
-                    className="card-quick-cart-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      addToCart(rel);
-                    }}
-                    title="Add to Cart"
-                  >
-                    <ShoppingBag size={15} />
-                  </button>
-                </div>
-                <div className="card-details">
-                  <span className="card-category">{rel.category}</span>
-                  <h3 className="card-title">{rel.name}</h3>
-                  <div className="card-price">₦{rel.priceNGN.toLocaleString()}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
+      <CartelFooter baseUrl="/demos/mimmscartel" />
     </div>
-  );
+  )
 }

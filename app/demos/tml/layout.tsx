@@ -10,7 +10,7 @@ export default function TMLLayout({ children }: { children: React.ReactNode }) {
     <CartProvider>
       <Navbar />
       <CartDrawer />
-      <main style={{ paddingTop: '105px' }}>
+      <main className="pt-32 sm:pt-28 min-h-screen">
         {children}
       </main>
       <Footer />
