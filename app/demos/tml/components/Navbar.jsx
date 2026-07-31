@@ -12,10 +12,23 @@ export default function Navbar() {
   const [theme, setTheme] = useState('dark');
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
+  const applyTheme = (targetTheme) => {
+    document.documentElement.setAttribute('data-theme', targetTheme);
+    if (targetTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.body.style.backgroundColor = '#090C0A';
+      document.body.style.color = '#F8FAFC';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.style.backgroundColor = '#F8FAFC';
+      document.body.style.color = '#0F172A';
+    }
+  };
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('tml_theme') || 'dark';
     setTheme(savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    applyTheme(savedTheme);
 
     let lastScrollY = window.scrollY;
 
@@ -24,10 +37,8 @@ export default function Navbar() {
       if (currentScrollY < 30) {
         setIsHeaderVisible(true);
       } else if (currentScrollY > lastScrollY + 8) {
-        // Scrolling down -> Auto-hide brand logo & title
         setIsHeaderVisible(false);
       } else if (currentScrollY < lastScrollY - 8) {
-        // Scrolling up -> Reappear
         setIsHeaderVisible(true);
       }
       lastScrollY = currentScrollY;
@@ -41,7 +52,7 @@ export default function Navbar() {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
     localStorage.setItem('tml_theme', nextTheme);
-    document.documentElement.setAttribute('data-theme', nextTheme);
+    applyTheme(nextTheme);
   };
 
   return (

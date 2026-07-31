@@ -3,7 +3,7 @@
    Sophisticated Floating Pill Nav, Custom Buttons & Adaptive Watermark Cards
    ========================================================================== */
 
-:root, [data-theme="dark"] {
+:root, [data-theme="dark"], html.dark {
     --bg-primary: #090C0A;
     --bg-secondary: #111512;
     --bg-glass: rgba(12, 16, 13, 0.45);
@@ -40,14 +40,27 @@
     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme="light"] {
+html[data-theme="light"], body[data-theme="light"], [data-theme="light"] {
     --bg-primary: #F8FAFC;
     --bg-secondary: #FFFFFF;
-    --bg-glass: rgba(255, 255, 255, 0.55);
+    --bg-glass: rgba(255, 255, 255, 0.75);
     
     --silver-primary: #0F172A;
     --silver-accent: #334155;
     --silver-dark: #64748B;
+    
+    --text-primary: #0F172A;
+    --text-muted: #475569;
+    --text-dim: #64748B;
+
+    --border-silver: rgba(15, 23, 42, 0.12);
+    --border-subtle: rgba(0, 0, 0, 0.06);
+
+    --btn-bg: #0F172A;
+    --btn-text: #F8FAFC;
+    --btn-hover-bg: #E2B755;
+    --btn-hover-text: #0F172A;
+}
     
     --gold-accent: #D4AF37;
     --gold-border: rgba(212, 175, 55, 0.18);

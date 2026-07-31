@@ -15,7 +15,7 @@ import {
   Globe,
 } from 'lucide-react'
 
-const safeUrl = (url: string | null) => { if (!url) return '#'; return (url.startsWith('http://') || url.startsWith('https://')) ? url : `https://${url}` }
+const safeUrl = (url: string | null) => { if (!url) return '#'; return (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/')) ? url : `https://${url}` }
 
 type Project = {
   id: string

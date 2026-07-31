@@ -129,61 +129,70 @@ export default function GlassmorphicHeader() {
         </div>
       </motion.header>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Right Slide-Over Drawer */}
       <AnimatePresence>
         {sidebarOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed top-20 left-4 right-4 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-2xl border border-neutral-200 dark:border-neutral-800 rounded-3xl p-6 shadow-xl z-40 md:hidden"
-          >
-            <nav className="flex flex-col space-y-2 text-sm font-bold">
-              {NAV_LINKS.map((link) => {
-                const isActive = pathname === link.href || (link.href === '/projects' && pathname.startsWith('/demos'))
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
+          <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-xs md:hidden">
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 220 }}
+              className="w-4/5 max-w-sm bg-white/95 dark:bg-neutral-900/95 backdrop-blur-2xl border-l border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-neutral-100 h-full p-6 flex flex-col justify-between shadow-2xl overflow-y-auto"
+            >
+              <div>
+                <div className="flex items-center justify-between pb-6 mb-6 border-b border-neutral-200 dark:border-neutral-800">
+                  <div className="flex items-center gap-2">
+                    <Image src="/logo.png" alt="Syntax Logo" width={28} height={28} className="object-contain" />
+                    <span className="font-extrabold text-sm tracking-tight uppercase">SYNTAX SERVICES</span>
+                  </div>
+                  <button
                     onClick={() => setSidebarOpen(false)}
-                    className={`px-4 py-3 rounded-2xl flex items-center justify-between ${
-                      isActive
-                        ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-extrabold'
-                        : 'hover:bg-neutral-100 dark:hover:bg-neutral-800'
-                    }`}
+                    className="w-9 h-9 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-500 hover:text-neutral-900 dark:hover:text-white flex items-center justify-center"
+                    aria-label="Close menu"
                   >
-                    <span>{link.label}</span>
-                    {isActive && <span className="w-2 h-2 rounded-full bg-orange-500" />}
+                    <X size={18} />
+                  </button>
+                </div>
+
+                <nav className="flex flex-col space-y-2">
+                  {NAV_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setSidebarOpen(false)}
+                      className={`px-4 py-3 rounded-2xl text-sm font-bold transition-all ${
+                        pathname === link.href
+                          ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm'
+                          : 'hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-300'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setSidebarOpen(false)}
+                    className="px-4 py-3 rounded-2xl text-sm font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 flex items-center gap-2"
+                  >
+                    <Zap className="w-4 h-4" />
+                    <span>Partner Portal</span>
                   </Link>
-                )
-              })}
+                </nav>
+              </div>
 
-              <Link
-                href="/dashboard"
-                onClick={() => setSidebarOpen(false)}
-                className={`px-4 py-3 rounded-2xl flex items-center justify-between ${
-                  pathname === '/dashboard'
-                    ? 'bg-emerald-600 text-white font-extrabold'
-                    : 'hover:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                }`}
-              >
-                <span>Partner Portal</span>
-                <Zap className="w-4 h-4 text-emerald-500" />
-              </Link>
-
-              <Link
-                href="/book"
-                onClick={() => setSidebarOpen(false)}
-                className={`mt-3 py-3.5 rounded-full font-bold uppercase tracking-wider text-center shadow-sm ${
-                  pathname === '/book'
-                    ? 'bg-orange-500 text-white font-extrabold'
-                    : 'bg-neutral-900 dark:bg-white text-white dark:text-neutral-900'
-                }`}
-              >
-                Book Project Now
-              </Link>
-            </nav>
-          </motion.div>
+              <div className="pt-6 border-t border-neutral-200 dark:border-neutral-800 space-y-3">
+                <Link
+                  href="/book"
+                  onClick={() => setSidebarOpen(false)}
+                  className="w-full py-3.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs uppercase tracking-wider text-center block shadow-lg shadow-orange-500/20"
+                >
+                  Book Project
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
