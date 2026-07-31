@@ -1,4 +1,5 @@
 'use client';
+import './tml-globals.css';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import CartDrawer from './components/CartDrawer';
