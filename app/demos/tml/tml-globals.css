@@ -43,40 +43,27 @@
 html[data-theme="light"], body[data-theme="light"], [data-theme="light"] {
     --bg-primary: #F8FAFC;
     --bg-secondary: #FFFFFF;
-    --bg-glass: rgba(255, 255, 255, 0.75);
+    --bg-glass: rgba(255, 255, 255, 0.85);
     
     --silver-primary: #0F172A;
     --silver-accent: #334155;
     --silver-dark: #64748B;
+
+    --gold-accent: #B48811;
+    --gold-border: rgba(180, 136, 17, 0.25);
+
+    --whatsapp-green: #128C7E;
     
     --text-primary: #0F172A;
-    --text-muted: #475569;
+    --text-muted: #334155;
     --text-dim: #64748B;
 
-    --border-silver: rgba(15, 23, 42, 0.12);
-    --border-subtle: rgba(0, 0, 0, 0.06);
+    --border-silver: rgba(15, 23, 42, 0.16);
+    --border-subtle: rgba(0, 0, 0, 0.08);
 
     --btn-bg: #0F172A;
     --btn-text: #F8FAFC;
     --btn-hover-bg: #E2B755;
-    --btn-hover-text: #0F172A;
-}
-    
-    --gold-accent: #D4AF37;
-    --gold-border: rgba(212, 175, 55, 0.18);
-    
-    --whatsapp-green: #25D366;
-    
-    --text-primary: #0F172A;
-    --text-muted: #64748B;
-    --text-dim: #94A3B8;
-    
-    --border-silver: rgba(15, 23, 42, 0.14);
-    --border-subtle: rgba(0, 0, 0, 0.08);
-    
-    --btn-bg: #0F172A;
-    --btn-text: #FFFFFF;
-    --btn-hover-bg: #FFFFFF;
     --btn-hover-text: #0F172A;
 }
 

@@ -1,18 +1,12 @@
 'use client';
 import { CartProvider } from './context/CartContext';
-import Navbar from './components/Navbar';
-import CartDrawer from './components/CartDrawer';
-import Footer from './components/Footer';
 
 export default function MimmsLayout({ children }: { children: React.ReactNode }) {
   return (
     <CartProvider>
-      <Navbar />
-      <CartDrawer />
-      <main style={{ paddingTop: '105px' }}>
+      <div className="min-h-screen bg-neutral-950 text-white selection:bg-amber-500 selection:text-neutral-950">
         {children}
-      </main>
-      <Footer />
+      </div>
     </CartProvider>
   );
 }
