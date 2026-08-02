@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { PageView } from '../types/car';
-import { Menu, X, Layers, PhoneCall, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
+import { Menu, X, Layers, PhoneCall, ArrowRight, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavbarProps {
@@ -48,7 +48,15 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navBorder = isTransparent ? 'none' : '1px solid rgba(0,0,0,0.08)';
   const navShadow = isTransparent ? 'none' : '0 4px 20px rgba(0,0,0,0.04)';
   const textColor = isTransparent ? '#ffffff' : '#0a0a0a';
-  const logoFilter = isTransparent ? 'brightness(10) drop-shadow(0 2px 8px rgba(0,0,0,0.5))' : 'none';
+
+  // Crisp White Logo on initial transparent load; Original dark logo when scrolled
+  const logoSrc = isTransparent
+    ? '/polanco_assets/polanco_logo_white.png'
+    : '/polanco_assets/polanco_logo.png';
+
+  const logoFilter = isTransparent
+    ? 'brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0,0,0,0.6))'
+    : 'none';
 
   return (
     <header style={{
@@ -72,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         alignItems: 'center',
         justifyContent: 'space-between'
       }}>
-        {/* Logo — @POLANCO emblem + EXOTIC CARS typography */}
+        {/* Logo — Pure White Emblem on Hero, Dark Emblem when Scrolled */}
         <div
           onClick={() => {
             setActiveView('home');
@@ -81,14 +89,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}
         >
           <img
-            src="/polanco_assets/polanco_logo.png"
+            src={logoSrc}
             alt="Polanco Exotic Cars"
             style={{
               height: '32px',
               width: 'auto',
               objectFit: 'contain',
               filter: logoFilter,
-              transition: 'filter 0.4s ease'
+              transition: 'all 0.4s ease'
             }}
             onError={(e) => {
               (e.target as HTMLImageElement).src = '/images/polanco_logo.png';
@@ -220,7 +228,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </div>
       </div>
 
-      {/* High-End Mobile Full-Screen Glass Drawer */}
+      {/* High-End Mobile Full-Screen Glass White Drawer with Black Texts */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -235,10 +243,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               right: 0,
               bottom: 0,
               height: 'calc(100vh - 64px)',
-              background: 'rgba(10, 10, 10, 0.98)',
+              background: 'rgba(255, 255, 255, 0.98)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
-              color: '#ffffff',
+              color: '#0a0a0a',
               zIndex: 999,
               display: 'flex',
               flexDirection: 'column',
@@ -252,7 +260,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 fontSize: '0.62rem',
                 fontWeight: 700,
                 letterSpacing: '0.25em',
-                color: 'rgba(255,255,255,0.4)',
+                color: 'rgba(10,10,10,0.5)',
                 textTransform: 'uppercase',
                 marginBottom: '8px'
               }}>
@@ -276,36 +284,36 @@ export const Navbar: React.FC<NavbarProps> = ({
                     fontSize: '1.6rem',
                     fontWeight: 400,
                     letterSpacing: '0.02em',
-                    color: activeView === item.view ? '#ffffff' : 'rgba(255,255,255,0.65)',
+                    color: activeView === item.view ? '#0a0a0a' : 'rgba(10,10,10,0.65)',
                     cursor: 'pointer',
                     textAlign: 'left',
                     padding: '10px 0',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    borderBottom: '1px solid rgba(255,255,255,0.08)'
+                    borderBottom: '1px solid rgba(0,0,0,0.08)'
                   }}
                 >
                   <span>{item.label}</span>
-                  <ArrowRight size={18} color="rgba(255,255,255,0.4)" />
+                  <ArrowRight size={18} color="rgba(10,10,10,0.4)" />
                 </motion.button>
               ))}
             </div>
 
-            {/* Mobile Footer Card inside Drawer */}
+            {/* Mobile Footer Card inside White Drawer */}
             <div style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.12)',
+              background: 'rgba(10,10,10,0.04)',
+              border: '1px solid rgba(0,0,0,0.08)',
               padding: '20px',
               marginTop: '24px'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                <MapPin size={14} color="#ffffff" />
-                <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.18em', color: '#ffffff', textTransform: 'uppercase' }}>
+                <MapPin size={14} color="#0a0a0a" />
+                <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.18em', color: '#0a0a0a', textTransform: 'uppercase' }}>
                   LEKKI SHOWROOM · LAGOS
                 </span>
               </div>
-              <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, marginBottom: '14px' }}>
+              <p style={{ fontSize: '0.8rem', color: 'rgba(10,10,10,0.7)', lineHeight: 1.5, marginBottom: '14px' }}>
                 Admiralty Way / Lekki-Epe Expressway, Lekki Phase 1, Lagos, Nigeria
               </p>
               <button
@@ -315,8 +323,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }}
                 style={{
                   width: '100%',
-                  background: '#ffffff',
-                  color: '#0a0a0a',
+                  background: '#0a0a0a',
+                  color: '#ffffff',
                   border: 'none',
                   padding: '12px',
                   fontSize: '0.68rem',
