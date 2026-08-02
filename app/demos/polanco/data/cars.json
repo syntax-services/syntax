@@ -1,0 +1,1177 @@
+[
+  {
+    "id": "ferrari-sf90-stradale-assetto-fiorano-1",
+    "make": "Ferrari",
+    "model": "SF90 Stradale Assetto Fiorano",
+    "year": 2025,
+    "priceUSD": 720000,
+    "priceNGN": 1080000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/sf90_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-flat-plane-turbo",
+      "idleRpm": 1000,
+      "redlineRpm": 8000,
+      "soundLabel": "4.0L Twin-Turbo V8 + Tri-Motor Hybrid (8,000 RPM)",
+      "basePitch": 1.05
+    },
+    "specs": {
+      "engine": "3.9L Twin-Turbo V8 Hybrid",
+      "engineType": "Hybrid",
+      "horsepower": 986,
+      "torque": "887 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 2.2s",
+      "topSpeed": "217 mph (350 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLFER38842221",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 986 HP 3.9L Twin-Turbo V8 Hybrid powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "ferrari-812-gts-v12-spider-2",
+    "make": "Ferrari",
+    "model": "812 GTS V12 Spider",
+    "year": 2024,
+    "priceUSD": 610000,
+    "priceNGN": 915000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/images/hero_slides/slide_4_ferrari.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-naturally-aspirated",
+      "idleRpm": 1000,
+      "redlineRpm": 8900,
+      "soundLabel": "6.5L Naturally Aspirated V12 Performance Note",
+      "basePitch": 0.9
+    },
+    "specs": {
+      "engine": "6.5L Naturally Aspirated V12",
+      "engineType": "V12",
+      "horsepower": 789,
+      "torque": "710 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLFER38842222",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 789 HP 6.5L Naturally Aspirated V12 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "rolls-royce-cullinan-black-badge-6",
+    "make": "Rolls-Royce",
+    "model": "Cullinan Black Badge",
+    "year": 2024,
+    "priceUSD": 640000,
+    "priceNGN": 960000000,
+    "isPrivatePricing": true,
+    "status": "Arriving Soon",
+    "bodyStyle": "SUV",
+    "image": "/polanco_assets/cullinan_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-velvet-silent",
+      "idleRpm": 550,
+      "redlineRpm": 5500,
+      "soundLabel": "6.75L Twin-Turbo V12 Whisper (Silent Velvet Cabin)",
+      "basePitch": 0.85
+    },
+    "specs": {
+      "engine": "6.75L Twin-Turbo V12",
+      "engineType": "V12",
+      "horsepower": 592,
+      "torque": "533 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 4.2s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLROL38842226",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 592 HP 6.75L Twin-Turbo V12 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "rolls-royce-phantom-viii-extended-lwb-7",
+    "make": "Rolls-Royce",
+    "model": "Phantom VIII Extended LWB",
+    "year": 2025,
+    "priceUSD": 750000,
+    "priceNGN": 1125000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/phantom_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-velvet-silent",
+      "idleRpm": 550,
+      "redlineRpm": 5500,
+      "soundLabel": "6.75L Twin-Turbo V12 Whisper (Silent Velvet Cabin)",
+      "basePitch": 0.85
+    },
+    "specs": {
+      "engine": "6.75L Twin-Turbo V12",
+      "engineType": "V12",
+      "horsepower": 563,
+      "torque": "507 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 4.2s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLROL38842227",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 563 HP 6.75L Twin-Turbo V12 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "rolls-royce-spectre-electric-super-coupe-8",
+    "make": "Rolls-Royce",
+    "model": "Spectre Electric Super Coupe",
+    "year": 2024,
+    "priceUSD": 540000,
+    "priceNGN": 810000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/spectre_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-velvet-silent",
+      "idleRpm": 550,
+      "redlineRpm": 5500,
+      "soundLabel": "6.75L Twin-Turbo V12 Whisper (Silent Velvet Cabin)",
+      "basePitch": 0.85
+    },
+    "specs": {
+      "engine": "Dual Electric Motors",
+      "engineType": "Hybrid",
+      "horsepower": 577,
+      "torque": "519 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 4.2s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLROL38842228",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 577 HP Dual Electric Motors powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "lamborghini-urus-performante-11",
+    "make": "Lamborghini",
+    "model": "Urus Performante",
+    "year": 2025,
+    "priceUSD": 410000,
+    "priceNGN": 615000000,
+    "isPrivatePricing": false,
+    "status": "In Stock",
+    "bodyStyle": "SUV",
+    "image": "/polanco_assets/urus_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-twin-turbo",
+      "idleRpm": 800,
+      "redlineRpm": 6800,
+      "soundLabel": "4.0L Twin-Turbo V8 + Akrapovič Titanium Backfires",
+      "basePitch": 1
+    },
+    "specs": {
+      "engine": "4.0L Twin-Turbo V8",
+      "engineType": "V8",
+      "horsepower": 657,
+      "torque": "591 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLLAM388422311",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 657 HP 4.0L Twin-Turbo V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "lamborghini-revuelto-v12-hpev-hybrid-12",
+    "make": "Lamborghini",
+    "model": "Revuelto V12 HPEV Hybrid",
+    "year": 2024,
+    "priceUSD": 890000,
+    "priceNGN": 1335000000,
+    "isPrivatePricing": true,
+    "status": "Arriving Soon",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/revuelto_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-naturally-aspirated",
+      "idleRpm": 1050,
+      "redlineRpm": 9500,
+      "soundLabel": "6.5L L545 NA V12 + HPEV (9,500 RPM F1 Crescendo)",
+      "basePitch": 1.15
+    },
+    "specs": {
+      "engine": "6.5L NA V12 + 3 Electric Motors",
+      "engineType": "Hybrid",
+      "horsepower": 1001,
+      "torque": "901 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 2.2s",
+      "topSpeed": "217 mph (350 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLLAM388422312",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 1001 HP 6.5L NA V12 + 3 Electric Motors powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "mercedes-amg-g63-amg-grand-edition-16",
+    "make": "Mercedes-AMG",
+    "model": "G63 AMG Grand Edition",
+    "year": 2024,
+    "priceUSD": 360000,
+    "priceNGN": 540000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "SUV",
+    "image": "/polanco_assets/g63.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-twin-turbo",
+      "idleRpm": 850,
+      "redlineRpm": 7000,
+      "soundLabel": "4.0L Handcrafted Biturbo V8 Performance Note",
+      "basePitch": 1
+    },
+    "specs": {
+      "engine": "4.0L Handcrafted Biturbo V8",
+      "engineType": "V8",
+      "horsepower": 577,
+      "torque": "519 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 4.2s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLMER388422316",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 577 HP 4.0L Handcrafted Biturbo V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "porsche-911-gt3-rs--weissach-package--25",
+    "make": "Porsche",
+    "model": "911 GT3 RS (Weissach Package)",
+    "year": 2025,
+    "priceUSD": 520000,
+    "priceNGN": 780000000,
+    "isPrivatePricing": true,
+    "status": "Reserved",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/porsche_gt3rs_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "flat-6-high-rev",
+      "idleRpm": 950,
+      "redlineRpm": 9000,
+      "soundLabel": "4.0L NA Flat-6 (9,000 RPM Motorsport Cup Howl)",
+      "basePitch": 1
+    },
+    "specs": {
+      "engine": "4.0L Naturally Aspirated Flat-6",
+      "engineType": "Flat-6",
+      "horsepower": 518,
+      "torque": "466 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 4.2s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLPOR388422325",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 518 HP 4.0L Naturally Aspirated Flat-6 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "cadillac-escalade-v-armored-b6-edition-30",
+    "make": "Cadillac",
+    "model": "Escalade-V Armored B6 Edition",
+    "year": 2024,
+    "priceUSD": 440000,
+    "priceNGN": 660000000,
+    "isPrivatePricing": false,
+    "status": "Reserved",
+    "bodyStyle": "Armored",
+    "image": "/polanco_assets/g63_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-supercharged",
+      "idleRpm": 800,
+      "redlineRpm": 6800,
+      "soundLabel": "6.2L Supercharged V8 Performance Note",
+      "basePitch": 1
+    },
+    "specs": {
+      "engine": "6.2L Supercharged V8",
+      "engineType": "Supercharged V8",
+      "horsepower": 682,
+      "torque": "614 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLCAD388422330",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 682 HP 6.2L Supercharged V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "bentley-continental-gt-speed-edition-12-33",
+    "make": "Bentley",
+    "model": "Continental GT Speed Edition 12",
+    "year": 2025,
+    "priceUSD": 380000,
+    "priceNGN": 570000000,
+    "isPrivatePricing": false,
+    "status": "Arriving Soon",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/continental_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "w12-twin-turbo",
+      "idleRpm": 600,
+      "redlineRpm": 6500,
+      "soundLabel": "6.0L Twin-Turbo W12 (Velvet Torque Surge)",
+      "basePitch": 0.9
+    },
+    "specs": {
+      "engine": "6.0L Twin-Turbo W12",
+      "engineType": "W12",
+      "horsepower": 650,
+      "torque": "585 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLBEN388422333",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 650 HP 6.0L Twin-Turbo W12 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "mclaren-750s-spider-performance-37",
+    "make": "McLaren",
+    "model": "750S Spider Performance",
+    "year": 2025,
+    "priceUSD": 390000,
+    "priceNGN": 585000000,
+    "isPrivatePricing": false,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/images/hero_slides/slide_3_mclaren.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-flat-plane-turbo",
+      "idleRpm": 950,
+      "redlineRpm": 8500,
+      "soundLabel": "4.0L M840T Flat-Plane V8 (8,500 RPM Flame Bark)",
+      "basePitch": 1
+    },
+    "specs": {
+      "engine": "4.0L Twin-Turbo V8",
+      "engineType": "V8",
+      "horsepower": 740,
+      "torque": "666 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLMCL388422337",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 740 HP 4.0L Twin-Turbo V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ],
+    "frames360": [
+      "/polanco_assets/360_frames/video_3/frame_0.jpg",
+      "/polanco_assets/360_frames/video_3/frame_1.jpg",
+      "/polanco_assets/360_frames/video_3/frame_2.jpg",
+      "/polanco_assets/360_frames/video_3/frame_3.jpg",
+      "/polanco_assets/360_frames/video_3/frame_4.jpg",
+      "/polanco_assets/360_frames/video_3/frame_5.jpg",
+      "/polanco_assets/360_frames/video_3/frame_6.jpg",
+      "/polanco_assets/360_frames/video_3/frame_7.jpg",
+      "/polanco_assets/360_frames/video_3/frame_8.jpg",
+      "/polanco_assets/360_frames/video_3/frame_9.jpg",
+      "/polanco_assets/360_frames/video_3/frame_10.jpg",
+      "/polanco_assets/360_frames/video_3/frame_11.jpg",
+      "/polanco_assets/360_frames/video_3/frame_12.jpg",
+      "/polanco_assets/360_frames/video_3/frame_13.jpg",
+      "/polanco_assets/360_frames/video_3/frame_14.jpg",
+      "/polanco_assets/360_frames/video_3/frame_15.jpg",
+      "/polanco_assets/360_frames/video_3/frame_16.jpg",
+      "/polanco_assets/360_frames/video_3/frame_17.jpg",
+      "/polanco_assets/360_frames/video_3/frame_18.jpg",
+      "/polanco_assets/360_frames/video_3/frame_19.jpg",
+      "/polanco_assets/360_frames/video_3/frame_20.jpg",
+      "/polanco_assets/360_frames/video_3/frame_21.jpg",
+      "/polanco_assets/360_frames/video_3/frame_22.jpg",
+      "/polanco_assets/360_frames/video_3/frame_23.jpg"
+    ]
+  },
+  {
+    "id": "aston-martin-dbs-770-ultimate-volante-40",
+    "make": "Aston Martin",
+    "model": "DBS 770 Ultimate Volante",
+    "year": 2024,
+    "priceUSD": 490000,
+    "priceNGN": 735000000,
+    "isPrivatePricing": true,
+    "status": "Reserved",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/dbs770_turntable.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v12-naturally-aspirated",
+      "idleRpm": 650,
+      "redlineRpm": 7200,
+      "soundLabel": "5.2L Twin-Turbo V12 (Sonorous British Roar)",
+      "basePitch": 0.95
+    },
+    "specs": {
+      "engine": "5.2L Twin-Turbo V12",
+      "engineType": "V12",
+      "horsepower": 759,
+      "torque": "683 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLAST388422440",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 759 HP 5.2L Twin-Turbo V12 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ],
+    "frames360": [
+      "/polanco_assets/360_frames/video_2/frame_0.jpg",
+      "/polanco_assets/360_frames/video_2/frame_1.jpg",
+      "/polanco_assets/360_frames/video_2/frame_2.jpg",
+      "/polanco_assets/360_frames/video_2/frame_3.jpg",
+      "/polanco_assets/360_frames/video_2/frame_4.jpg",
+      "/polanco_assets/360_frames/video_2/frame_5.jpg",
+      "/polanco_assets/360_frames/video_2/frame_6.jpg",
+      "/polanco_assets/360_frames/video_2/frame_7.jpg",
+      "/polanco_assets/360_frames/video_2/frame_8.jpg",
+      "/polanco_assets/360_frames/video_2/frame_9.jpg",
+      "/polanco_assets/360_frames/video_2/frame_10.jpg",
+      "/polanco_assets/360_frames/video_2/frame_11.jpg",
+      "/polanco_assets/360_frames/video_2/frame_12.jpg",
+      "/polanco_assets/360_frames/video_2/frame_13.jpg",
+      "/polanco_assets/360_frames/video_2/frame_14.jpg",
+      "/polanco_assets/360_frames/video_2/frame_15.jpg",
+      "/polanco_assets/360_frames/video_2/frame_16.jpg",
+      "/polanco_assets/360_frames/video_2/frame_17.jpg",
+      "/polanco_assets/360_frames/video_2/frame_18.jpg",
+      "/polanco_assets/360_frames/video_2/frame_19.jpg",
+      "/polanco_assets/360_frames/video_2/frame_20.jpg",
+      "/polanco_assets/360_frames/video_2/frame_21.jpg",
+      "/polanco_assets/360_frames/video_2/frame_22.jpg",
+      "/polanco_assets/360_frames/video_2/frame_23.jpg"
+    ]
+  },
+  {
+    "id": "aston-martin-dbx707-luxury-performance-suv-42",
+    "make": "Aston Martin",
+    "model": "DBX707 Luxury Performance SUV",
+    "year": 2024,
+    "priceUSD": 310000,
+    "priceNGN": 465000000,
+    "isPrivatePricing": false,
+    "status": "Arriving Soon",
+    "bodyStyle": "SUV",
+    "image": "/images/hero_slides/slide_2_aston.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-twin-turbo",
+      "idleRpm": 700,
+      "redlineRpm": 7000,
+      "soundLabel": "4.0L Twin-Turbo V8 (Deep British Overrun Growl)",
+      "basePitch": 0.95
+    },
+    "specs": {
+      "engine": "4.0L Twin-Turbo V8",
+      "engineType": "V8",
+      "horsepower": 697,
+      "torque": "627 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 3.1s",
+      "topSpeed": "190 mph (306 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLAST388422442",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 697 HP 4.0L Twin-Turbo V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ],
+    "frames360": [
+      "/polanco_assets/360_frames/video_2/frame_0.jpg",
+      "/polanco_assets/360_frames/video_2/frame_1.jpg",
+      "/polanco_assets/360_frames/video_2/frame_2.jpg",
+      "/polanco_assets/360_frames/video_2/frame_3.jpg",
+      "/polanco_assets/360_frames/video_2/frame_4.jpg",
+      "/polanco_assets/360_frames/video_2/frame_5.jpg",
+      "/polanco_assets/360_frames/video_2/frame_6.jpg",
+      "/polanco_assets/360_frames/video_2/frame_7.jpg",
+      "/polanco_assets/360_frames/video_2/frame_8.jpg",
+      "/polanco_assets/360_frames/video_2/frame_9.jpg",
+      "/polanco_assets/360_frames/video_2/frame_10.jpg",
+      "/polanco_assets/360_frames/video_2/frame_11.jpg",
+      "/polanco_assets/360_frames/video_2/frame_12.jpg",
+      "/polanco_assets/360_frames/video_2/frame_13.jpg",
+      "/polanco_assets/360_frames/video_2/frame_14.jpg",
+      "/polanco_assets/360_frames/video_2/frame_15.jpg",
+      "/polanco_assets/360_frames/video_2/frame_16.jpg",
+      "/polanco_assets/360_frames/video_2/frame_17.jpg",
+      "/polanco_assets/360_frames/video_2/frame_18.jpg",
+      "/polanco_assets/360_frames/video_2/frame_19.jpg",
+      "/polanco_assets/360_frames/video_2/frame_20.jpg",
+      "/polanco_assets/360_frames/video_2/frame_21.jpg",
+      "/polanco_assets/360_frames/video_2/frame_22.jpg",
+      "/polanco_assets/360_frames/video_2/frame_23.jpg"
+    ]
+  },
+  {
+    "id": "bugatti-chiron-super-sport-300--50",
+    "make": "Bugatti",
+    "model": "Chiron Super Sport 300+",
+    "year": 2024,
+    "priceUSD": 3900000,
+    "priceNGN": 5850000000,
+    "isPrivatePricing": true,
+    "status": "Reserved",
+    "bodyStyle": "Coupe",
+    "image": "/images/hero_slides/slide_1_bugatti.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "w16-quad-turbo",
+      "idleRpm": 650,
+      "redlineRpm": 6900,
+      "soundLabel": "8.0L Quad-Turbo W16 (Wastegate Blow-Off Surge)",
+      "basePitch": 0.9
+    },
+    "specs": {
+      "engine": "8.0L Quad-Turbo W16",
+      "engineType": "W12",
+      "horsepower": 1578,
+      "torque": "1420 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 2.2s",
+      "topSpeed": "217 mph (350 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLBUG388422450",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 1578 HP 8.0L Quad-Turbo W16 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ],
+    "frames360": [
+      "/polanco_assets/360_frames/video_1/frame_0.jpg",
+      "/polanco_assets/360_frames/video_1/frame_1.jpg",
+      "/polanco_assets/360_frames/video_1/frame_2.jpg",
+      "/polanco_assets/360_frames/video_1/frame_3.jpg",
+      "/polanco_assets/360_frames/video_1/frame_4.jpg",
+      "/polanco_assets/360_frames/video_1/frame_5.jpg",
+      "/polanco_assets/360_frames/video_1/frame_6.jpg",
+      "/polanco_assets/360_frames/video_1/frame_7.jpg",
+      "/polanco_assets/360_frames/video_1/frame_8.jpg",
+      "/polanco_assets/360_frames/video_1/frame_9.jpg",
+      "/polanco_assets/360_frames/video_1/frame_10.jpg",
+      "/polanco_assets/360_frames/video_1/frame_11.jpg",
+      "/polanco_assets/360_frames/video_1/frame_12.jpg",
+      "/polanco_assets/360_frames/video_1/frame_13.jpg",
+      "/polanco_assets/360_frames/video_1/frame_14.jpg",
+      "/polanco_assets/360_frames/video_1/frame_15.jpg",
+      "/polanco_assets/360_frames/video_1/frame_16.jpg",
+      "/polanco_assets/360_frames/video_1/frame_17.jpg",
+      "/polanco_assets/360_frames/video_1/frame_18.jpg",
+      "/polanco_assets/360_frames/video_1/frame_19.jpg",
+      "/polanco_assets/360_frames/video_1/frame_20.jpg",
+      "/polanco_assets/360_frames/video_1/frame_21.jpg",
+      "/polanco_assets/360_frames/video_1/frame_22.jpg",
+      "/polanco_assets/360_frames/video_1/frame_23.jpg"
+    ]
+  },
+  {
+    "id": "koenigsegg-jesko-attack-megacar-52",
+    "make": "Koenigsegg",
+    "model": "Jesko Attack Megacar",
+    "year": 2024,
+    "priceUSD": 3400000,
+    "priceNGN": 5100000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/koenigsegg_jesko.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-flat-plane-turbo",
+      "idleRpm": 1100,
+      "redlineRpm": 8500,
+      "soundLabel": "5.0L Flat-Plane V8 (46,000 RPM/sec Record Free-Rev)",
+      "basePitch": 1.1
+    },
+    "specs": {
+      "engine": "5.0L Twin-Turbo Flat-Plane V8",
+      "engineType": "V8",
+      "horsepower": 1600,
+      "torque": "1440 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 2.2s",
+      "topSpeed": "217 mph (350 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLKOE388422452",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 1600 HP 5.0L Twin-Turbo Flat-Plane V8 powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  },
+  {
+    "id": "koenigsegg-gemera-4-seater-megacar-v8-53",
+    "make": "Koenigsegg",
+    "model": "Gemera 4-Seater Megacar V8",
+    "year": 2025,
+    "priceUSD": 2500000,
+    "priceNGN": 3750000000,
+    "isPrivatePricing": true,
+    "status": "In Stock",
+    "bodyStyle": "Coupe",
+    "image": "/polanco_assets/koenigsegg_gemera.jpg",
+    "interiorImage": "/polanco_assets/hypercar_interior.jpg",
+    "gallery": [
+      {
+        "type": "Polanco Lekki Showroom Driveway Exterior",
+        "url": "/polanco_assets/polanco_showroom_bg.jpg"
+      },
+      {
+        "type": "Close-up Forged Alloy Wheel & Tire Detail",
+        "url": "/polanco_assets/ferrari.jpg"
+      },
+      {
+        "type": "Rear Aero Diffuser & Exhaust Quad Tailpipes",
+        "url": "/polanco_assets/g63.jpg"
+      },
+      {
+        "type": "Bespoke Executive Leather Interior Cockpit",
+        "url": "/polanco_assets/hypercar_interior.jpg"
+      },
+      {
+        "type": "Fibre-Optic Starlight Ceiling / Engine Bay",
+        "url": "/polanco_assets/starlight_interior.jpg"
+      }
+    ],
+    "soundProfile": {
+      "type": "v8-flat-plane-turbo",
+      "idleRpm": 1100,
+      "redlineRpm": 8500,
+      "soundLabel": "5.0L Flat-Plane V8 (46,000 RPM/sec Record Free-Rev)",
+      "basePitch": 1.1
+    },
+    "specs": {
+      "engine": "5.0L Twin-Turbo V8 Hybrid",
+      "engineType": "Hybrid",
+      "horsepower": 2300,
+      "torque": "2070 lb-ft @ 2,500 RPM",
+      "acceleration": "0-60 mph in 2.2s",
+      "topSpeed": "217 mph (350 km/h)",
+      "transmission": "8-Speed Dual-Clutch F1 Automatic",
+      "drivetrain": "All-Wheel Drive (AWD)",
+      "vin": "POLKOE388422453",
+      "interiorPackage": "Bespoke Hand-Stitched Nappa Leather with Technical Carbon Fiber Accents",
+      "exteriorColor": "Lekki Showroom Exclusive Finish",
+      "customsStatus": "100% Fully Cleared at Lagos Port (Original C-Number)"
+    },
+    "overview": "Official showroom unit at Polanco Exotic Cars Lekki. Featuring a 2300 HP 5.0L Twin-Turbo V8 Hybrid powertrain, custom carbon fiber exterior aerodynamics, and bespoke interior craftsmanship.",
+    "keyFeatures": [
+      "Polanco Lekki Showroom Certified Unit",
+      "Factory Carbon Fiber Aerodynamic Package",
+      "High-Performance Titanium Exhaust System",
+      "Full Customs Clearance & Original Title"
+    ]
+  }
+]
