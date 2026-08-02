@@ -185,6 +185,4 @@ export default function PolancoDemoPage() {
       )}
     </div>
   );
-};
-
-export default App;
+}
