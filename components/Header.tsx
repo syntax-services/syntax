@@ -44,7 +44,7 @@ export default function GlassmorphicHeader() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  if (pathname?.startsWith('/demos')) {
+  if (pathname?.startsWith('/demos') || pathname?.startsWith('/compound')) {
     return null
   }
 

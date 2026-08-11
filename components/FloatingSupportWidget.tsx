@@ -12,7 +12,7 @@ export default function FloatingSupportWidget() {
   const [isOpen, setIsOpen] = useState(false)
   const [dismissed, setDismissed] = useState(false)
 
-  if (dismissed || pathname?.startsWith('/demos')) return null
+  if (dismissed || pathname?.startsWith('/demos') || pathname?.startsWith('/compound')) return null
 
   const whatsappLink = `https://wa.me/2348051310367?text=${encodeURIComponent(
     'Hello Syntax Services! I would like to consult on a web development project.'
