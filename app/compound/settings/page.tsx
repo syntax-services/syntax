@@ -82,16 +82,17 @@ export default function SettingsPage() {
   const [withdrawAmount, setWithdrawAmount] = useState("");
 
   useEffect(() => {
-    // Check Localhost Developer Exemption
+    // Check Localhost Developer Exemption & Protect Settings during waitlist
     if (typeof window !== "undefined") {
       const hostname = window.location.hostname;
-      if (hostname === "localhost" || hostname === "127.0.0.1") {
+      const isDev = hostname === "localhost" || hostname === "127.0.0.1";
+      if (isDev) {
         setIsLocalhostDev(true);
         localStorage.setItem("cum_mt5_subscribed", "true");
         setIsMt5Subscribed(true);
       } else {
-        const storedSub = localStorage.getItem("cum_mt5_subscribed");
-        if (storedSub === "true") setIsMt5Subscribed(true);
+        router.push("/compound");
+        return;
       }
 
       const storedEmail = localStorage.getItem("cum_user_email");

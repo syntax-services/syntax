@@ -41,17 +41,18 @@ const Icons = {
 };
 
 const FULL_NAV_ITEMS = [
-  { name: "cum£", href: "/", icon: Icons.Quotes },
-  { name: "Chart", href: "/chart", icon: Icons.Chart },
-  { name: "Trade", href: "/trade", icon: Icons.Trade }, 
-  { name: "History", href: "/history", icon: Icons.History },
-  { name: "Settings", href: "/settings", icon: Icons.Settings },
+  { name: "cum£", href: "/compound", icon: Icons.Quotes },
+  { name: "Chart", href: "/compound/chart", icon: Icons.Chart },
+  { name: "Trade", href: "/compound/trade", icon: Icons.Trade }, 
+  { name: "History", href: "/compound/history", icon: Icons.History },
+  { name: "Settings", href: "/compound/settings", icon: Icons.Settings },
 ];
 
 const WAITLIST_NAV_ITEMS = [
-  { name: "Trade", href: "/trade", icon: Icons.Trade }, 
-  { name: "Chart", href: "/chart", icon: Icons.Chart },
-  { name: "History", href: "/history", icon: Icons.History },
+  { name: "cum£", href: "/compound", icon: Icons.Quotes },
+  { name: "Chart", href: "/compound/chart", icon: Icons.Chart },
+  { name: "Trade", href: "/compound/trade", icon: Icons.Trade }, 
+  { name: "History", href: "/compound/history", icon: Icons.History },
 ];
 
 export default function BottomPillNav() {

@@ -70,22 +70,22 @@ export const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children })
         return;
       }
 
-      // Stage 3: Check Payment / Subscription Status (EXEMPTED FOR DEVELOPER ON LOCALHOST ONLY)
+      // Stage 3: Protect Settings Page for Waitlist Users
       const isLocalhostDev = typeof window !== "undefined" && (
         window.location.hostname === "localhost" || 
         window.location.hostname === "127.0.0.1"
       );
 
-      const paymentCompleted = localStorage.getItem("cum_payment_completed") === "true";
-      if (!paymentCompleted && !isLocalhostDev) {
+      // Settings page is strictly locked for waitlist users (Unlocked on Monday Aug 17 WAT)
+      if (pathname.startsWith("/compound/settings") && !isLocalhostDev) {
         if (isSubscribed) {
-          setShowPaymentModal(true);
+          router.push("/compound");
           setIsChecking(false);
         }
         return;
       }
 
-      // All Checks Passed
+      // Free waitlist access granted to view dashboard, charts, trade positions, and history!
       if (isSubscribed) {
         setIsAuthorized(true);
         setIsChecking(false);
