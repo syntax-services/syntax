@@ -14,19 +14,34 @@ export const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    // Stage 1: Check Authentication (COMPULSORY FOR EVERYONE INCLUDING DEVELOPER)
+    // Stage 0: Public routes that bypass auth guard blocking
+    if (
+      pathname === "/compound/login" ||
+      pathname === "/compound/onboarding" ||
+      pathname === "/compound/terms" ||
+      pathname.startsWith("/compound/login") ||
+      pathname.startsWith("/compound/onboarding") ||
+      pathname.startsWith("/compound/terms")
+    ) {
+      setIsAuthorized(true);
+      setIsChecking(false);
+      return;
+    }
+
+    // Stage 1: Check Authentication
     const sessionExp = localStorage.getItem("cum_session_exp");
     const now = Date.now();
     const isAuthenticated = sessionExp && parseInt(sessionExp, 10) > now;
 
-    if (!isAuthenticated && pathname !== "/login") {
+    if (!isAuthenticated) {
       router.push("/compound/login");
+      setIsChecking(false);
       return;
     }
 
-    // Stage 2: Check Terms & Conditions Acceptance (COMPULSORY FOR EVERYONE INCLUDING DEVELOPER)
+    // Stage 2: Check Terms & Conditions Acceptance
     const rulesAccepted = localStorage.getItem("cum_rules_accepted") === "true";
-    if (!rulesAccepted && pathname !== "/login") {
+    if (!rulesAccepted) {
       setShowRulesModal(true);
       setIsChecking(false);
       return;
