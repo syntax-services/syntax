@@ -101,8 +101,8 @@ export default function BottomPillNav() {
     };
   }, []);
 
-  // If user is on /admin page, don't show pill nav
-  if (pathname === "/admin") return null;
+  // If user is on /admin or /compound/admin page, don't show pill nav
+  if (pathname === "/admin" || pathname === "/compound/admin" || pathname?.startsWith("/compound/admin")) return null;
 
   const currentNavItems = isWaitlist ? WAITLIST_NAV_ITEMS : FULL_NAV_ITEMS;
 
@@ -114,7 +114,7 @@ export default function BottomPillNav() {
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] z-50">
       <nav className={`flex items-center justify-between px-3 py-2 rounded-full border ${glassmorphismClass} shadow-2xl`}>
         {currentNavItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive = pathname === item.href || (item.href !== "/compound" && pathname.startsWith(item.href)) || (item.href === "/compound" && (pathname === "/compound" || pathname === "/compound/"));
           const Icon = item.icon;
 
           return (
