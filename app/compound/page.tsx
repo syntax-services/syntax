@@ -63,7 +63,7 @@ export default function DashboardHome() {
       {/* 100% Fixed Header Bar with Official Logo */}
       <header className="fixed top-0 left-0 right-0 z-40 bg-[#000000]/95 backdrop-blur-2xl px-4 pt-safe pt-2.5 pb-2.5 border-b border-white/[0.08] flex items-center justify-start max-w-md mx-auto">
         <div className="flex items-center justify-start py-0.5">
-          <Image src="/logo.jpg" alt="Cum£ound Logo" width={200} height={50} className="h-10 w-auto object-contain" priority />
+          <Image src="/compound/logo.jpg" alt="Cum£ound Logo" width={200} height={50} className="h-10 w-auto object-contain" priority />
         </div>
       </header>
 

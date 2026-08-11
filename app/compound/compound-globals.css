@@ -58,3 +58,16 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* High-Performance Hardware Acceleration & Rendering Optimizations */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.content-contain {
+  contain: content;
+}
+

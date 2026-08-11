@@ -159,7 +159,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md bg-[#1C1C1E]/90 backdrop-blur-2xl rounded-3xl border border-white/[0.08] p-7 space-y-6 shadow-2xl z-10 relative">
         {/* Brand Header with Official Logo */}
         <div className="flex justify-start pb-1">
-          <Image src="/logo.jpg" alt="Cum£ound Logo" width={220} height={55} className="h-11 w-auto object-contain" priority />
+          <Image src="/compound/logo.jpg" alt="Cum£ound Logo" width={220} height={55} className="h-11 w-auto object-contain" priority />
         </div>
 
         {/* Strict Email Confirmation Banner */}
