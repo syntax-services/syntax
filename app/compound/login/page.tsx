@@ -113,10 +113,12 @@ export default function LoginPage() {
     setIsAuthLoading(true);
     setErrorMsg("");
     try {
+      const origin = typeof window !== "undefined" ? window.location.origin : "https://syntax.com.ng";
+      const redirectUrl = `${origin}/compound/login`;
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+          redirectTo: redirectUrl
         }
       });
       if (error) throw error;

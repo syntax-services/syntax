@@ -8,8 +8,8 @@ export async function POST(req: Request) {
     const secretKey = process.env.PAYSTACK_SECRET_KEY || "";
     const amountInKobo = Math.round(Number(amountUsd) * 100 * 1600); // 1 USD ~ 1600 NGN in Kobo for Paystack NGN fallback or USD account
 
-    const origin = req.headers.get("origin") || "http://localhost:3000";
-    const callbackUrl = `${origin}/settings?payment=success&type=${encodeURIComponent(type || "deposit")}`;
+    const origin = req.headers.get("origin") || "https://syntax.com.ng";
+    const callbackUrl = `${origin}/compound/settings?payment=success&type=${encodeURIComponent(type || "deposit")}`;
 
     const response = await fetch("https://api.paystack.co/transaction/initialize", {
       method: "POST",
