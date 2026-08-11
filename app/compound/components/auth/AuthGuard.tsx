@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { supabase } from "@/app/compound/lib/supabase";
 import { RulesAcceptanceModal } from "@/app/compound/components/auth/RulesAcceptanceModal";
 import { SetupChoiceModal } from "@/app/compound/components/auth/SetupChoiceModal";
 
@@ -14,55 +15,88 @@ export const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children })
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    // Stage 0: Public routes that bypass auth guard blocking
-    if (
-      pathname === "/compound/login" ||
-      pathname === "/compound/onboarding" ||
-      pathname === "/compound/terms" ||
-      pathname.startsWith("/compound/login") ||
-      pathname.startsWith("/compound/onboarding") ||
-      pathname.startsWith("/compound/terms")
-    ) {
-      setIsAuthorized(true);
-      setIsChecking(false);
-      return;
+    let isSubscribed = true;
+
+    async function checkAuthStatus() {
+      // Stage 0: Public routes that bypass auth guard blocking
+      if (
+        pathname === "/compound/login" ||
+        pathname === "/compound/onboarding" ||
+        pathname === "/compound/terms" ||
+        pathname.startsWith("/compound/login") ||
+        pathname.startsWith("/compound/onboarding") ||
+        pathname.startsWith("/compound/terms")
+      ) {
+        if (isSubscribed) {
+          setIsAuthorized(true);
+          setIsChecking(false);
+        }
+        return;
+      }
+
+      // Stage 1: Check Authentication & Supabase OAuth Token Hash
+      let sessionExp = localStorage.getItem("cum_session_exp");
+      let now = Date.now();
+      let isAuthenticated = Boolean(sessionExp && parseInt(sessionExp, 10) > now);
+
+      if (!isAuthenticated) {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.user) {
+          const exp = String(Date.now() + 7 * 86400 * 1000);
+          localStorage.setItem("cum_session_exp", exp);
+          if (session.user.email) localStorage.setItem("cum_user_email", session.user.email);
+          if (session.user.user_metadata?.full_name) {
+            localStorage.setItem("cum_user_name", session.user.user_metadata.full_name);
+          }
+          isAuthenticated = true;
+        }
+      }
+
+      if (!isAuthenticated) {
+        if (isSubscribed) {
+          router.push("/compound/login");
+          setIsChecking(false);
+        }
+        return;
+      }
+
+      // Stage 2: Check Terms & Conditions Acceptance
+      const rulesAccepted = localStorage.getItem("cum_rules_accepted") === "true";
+      if (!rulesAccepted) {
+        if (isSubscribed) {
+          setShowRulesModal(true);
+          setIsChecking(false);
+        }
+        return;
+      }
+
+      // Stage 3: Check Payment / Subscription Status (EXEMPTED FOR DEVELOPER ON LOCALHOST ONLY)
+      const isLocalhostDev = typeof window !== "undefined" && (
+        window.location.hostname === "localhost" || 
+        window.location.hostname === "127.0.0.1"
+      );
+
+      const paymentCompleted = localStorage.getItem("cum_payment_completed") === "true";
+      if (!paymentCompleted && !isLocalhostDev) {
+        if (isSubscribed) {
+          setShowPaymentModal(true);
+          setIsChecking(false);
+        }
+        return;
+      }
+
+      // All Checks Passed
+      if (isSubscribed) {
+        setIsAuthorized(true);
+        setIsChecking(false);
+      }
     }
 
-    // Stage 1: Check Authentication
-    const sessionExp = localStorage.getItem("cum_session_exp");
-    const now = Date.now();
-    const isAuthenticated = sessionExp && parseInt(sessionExp, 10) > now;
+    checkAuthStatus();
 
-    if (!isAuthenticated) {
-      router.push("/compound/login");
-      setIsChecking(false);
-      return;
-    }
-
-    // Stage 2: Check Terms & Conditions Acceptance
-    const rulesAccepted = localStorage.getItem("cum_rules_accepted") === "true";
-    if (!rulesAccepted) {
-      setShowRulesModal(true);
-      setIsChecking(false);
-      return;
-    }
-
-    // Stage 3: Check Payment / Subscription Status (EXEMPTED FOR DEVELOPER ON LOCALHOST ONLY)
-    const isLocalhostDev = typeof window !== "undefined" && (
-      window.location.hostname === "localhost" || 
-      window.location.hostname === "127.0.0.1"
-    );
-
-    const paymentCompleted = localStorage.getItem("cum_payment_completed") === "true";
-    if (!paymentCompleted && !isLocalhostDev) {
-      setShowPaymentModal(true);
-      setIsChecking(false);
-      return;
-    }
-
-    // All Checks Passed
-    setIsAuthorized(true);
-    setIsChecking(false);
+    return () => {
+      isSubscribed = false;
+    };
   }, [router, pathname]);
 
   const handleRulesAccept = () => {

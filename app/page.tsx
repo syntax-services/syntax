@@ -33,6 +33,22 @@ export default function RedesignedFramerHomePage() {
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
 
   useEffect(() => {
+    // Detect Compound Supabase OAuth return hash fragment (#access_token=...)
+    if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session?.user) {
+          localStorage.setItem('cum_session_exp', String(Date.now() + 7 * 86400 * 1000))
+          if (session.user.email) localStorage.setItem('cum_user_email', session.user.email)
+          if (session.user.user_metadata?.full_name) {
+            localStorage.setItem('cum_user_name', session.user.user_metadata.full_name)
+          }
+          window.location.href = '/compound'
+        }
+      })
+    }
+  }, [])
+
+  useEffect(() => {
     logPageView('/')
     const fetchTopProjects = async () => {
       const { data } = await supabase
