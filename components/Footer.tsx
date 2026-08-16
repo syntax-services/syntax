@@ -9,7 +9,7 @@ import { SiTiktok } from 'react-icons/si'
 export default function Footer() {
   const pathname = usePathname()
 
-  if (pathname?.startsWith('/demos') || pathname?.startsWith('/compound')) {
+  if (pathname?.startsWith('/demos')) {
     return null
   }
 

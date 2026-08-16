@@ -33,22 +33,6 @@ export default function RedesignedFramerHomePage() {
   const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
 
   useEffect(() => {
-    // Detect Compound Supabase OAuth return hash fragment (#access_token=...)
-    if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        if (session?.user) {
-          localStorage.setItem('cum_session_exp', String(Date.now() + 7 * 86400 * 1000))
-          if (session.user.email) localStorage.setItem('cum_user_email', session.user.email)
-          if (session.user.user_metadata?.full_name) {
-            localStorage.setItem('cum_user_name', session.user.user_metadata.full_name)
-          }
-          window.location.href = '/compound'
-        }
-      })
-    }
-  }, [])
-
-  useEffect(() => {
     logPageView('/')
     const fetchTopProjects = async () => {
       const { data } = await supabase
@@ -69,31 +53,6 @@ export default function RedesignedFramerHomePage() {
 
       {/* Hero Section */}
       <section className="relative pt-36 pb-20 px-4 max-w-7xl mx-auto text-center z-10">
-        {/* Compound Bot Launch Announcement Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center"
-        >
-          <Link
-            href="/compound"
-            className="group flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-neutral-900 via-neutral-950 to-neutral-900 border border-neutral-800 shadow-xl hover:border-orange-500/50 transition-all duration-300"
-          >
-            <span className="flex items-center gap-2 text-xs font-semibold text-orange-400">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-              </span>
-              UPCOMING LAUNCH
-            </span>
-            <span className="text-xs sm:text-sm font-medium text-neutral-200 group-hover:text-white transition-colors">
-              ⚡ <strong className="text-white">Compound Trading Bot</strong> launches <span className="text-orange-400 font-bold">Monday, August 17th WAT</span> — Giveaway &amp; Allocation Protocol
-            </span>
-            <ChevronRight className="w-4 h-4 text-neutral-400 group-hover:text-orange-400 group-hover:translate-x-1 transition-all" />
-          </Link>
-        </motion.div>
-
         {/* Status Pill Badge with Framer Silver Border */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
